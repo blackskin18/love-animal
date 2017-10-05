@@ -3,9 +3,9 @@
     <script>
         app.controller('listData', function($scope, $http) {
             $scope.name = "Volvo";
-            $http.get("/post-list-pet")
+            $http.get("/api/animal/list-in-common-home")
             .then(function(response) {
-                console.log(response.data);
+                console.log(response);
                 $scope.animals = response.data;
             });
             $scope.sort = function(keyname){

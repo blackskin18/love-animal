@@ -17,7 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/test', 'PetController@test');
-route::get('/all-pet', 'PetController@listAllPest');
+Route::get('/home', 'HomeController@index')->name('home');
 route::get('post-list-pet','HomeController@postListPet');
+route::get('/list-in-common-home', 'HomeController@getListInCommonHome');
+route::get('api/animal/list-in-common-home','HomeController@postListInCommonHome');	

@@ -12,6 +12,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+    <script src="{{ asset('js/pagination/dirPagination.js') }}"></script>
     @yield('link-css')
     @yield('link-js')
     <style>
@@ -45,7 +48,7 @@
     }
     </style>
 </head>
-<body>
+<body ng-app="pagination">
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -70,7 +73,7 @@
                     <div class="navbar-nav" style="width: 80%; height: 50px;">
                         <div style="display: inline-block; height: 100%; margin: auto; margin-left: 30%;" >
                             <button class="btn btn-info"><span class="glyphicon glyphicon-envelope"></span></button>
-                            <input type="text" name="search" placeholder="Search..">
+                            <input type="text" ng-model="search" placeholder="Search">
                         </div>
                     </div>
 

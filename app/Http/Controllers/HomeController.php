@@ -24,17 +24,34 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
         return view('home');
     }
 
     public function postListPet()
     {
-         $animals = DB::table('animals')
+        $animals = DB::table('animals')
                     ->join('animal_images', 'animals.id', '=', 'animal_images.animal_id')
                     ->join('animal_status_histories', 'animals.id', '=', 'animal_status_histories.animal_id')
                     ->join('statuses', 'animal_status_histories.status_id', 'statuses.id', '=')
                     ->select('animals.*', 'animal_images.file_name', 'statuses.name as status'  )
+                    ->get();
+        return $animals;
+    }
+
+    public function getListInCommonHome()
+    {
+        return view('list_animal/in_common_home');
+    }
+
+    public function postListInCommonHome()
+    {
+        $animals = DB::table('animals')
+                    ->join('animal_images', 'animals.id', '=', 'animal_images.animal_id')
+                    ->join('animal_status_histories', 'animals.id', '=', 'animal_status_histories.animal_id')
+                    ->join('statuses', 'animal_status_histories.status_id', 'statuses.id', '=')
+                    ->select('animals.*', 'animal_images.file_name', 'statuses.name as status'  )
+                    ->where('animals.address','nhà chung')
                     ->get();
         return $animals;
     }
