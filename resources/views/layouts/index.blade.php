@@ -23,16 +23,21 @@
             line-height: 17px;
             overflow: hidden;
         }
-        div.menu div.list-case>div{
+        div.menu div.list-case>a{
             /* border-top: 1px solid #333; */
             font-size: 15px;
             padding-left: 30px;
+            text-decoration-line: none;
+            color:  black;
         }
-        div.menu div.list-case>div:hover{
+        div.menu div.list-case>a:hover{
             background-color: #FFFFFF;
         }
         div.menu>div:hover:not(.list-case){
             background-color: #ffffff;
+        }
+        div.menu>div{
+            margin-left: 10px;
         }
         .container1{
             width: 85%;
@@ -45,11 +50,11 @@
     <div class="menu">
         <div class="list-case">
             <span><h3>danh sách</h3></span>
-            <div> <span>nhà chung </span></div>
-            <div> <span>TNV </span></div>
-            <div> <span>Tìm Chủ </span></div>
-            <div> <span>Đã Tìm Chủ</span></div>
-            <div> <span>đi lạc/ đã chết</span></div>
+            <a href="/list-in-common-home" style="display: block; width: 100%; height: 100%"><div> <span>nhà chung </span> </div> </a>
+            <a href="#" style="display: block; width: 100%; height: 100%"><div> <span>TNV </span> </div> </a>
+            <a href="#" style="display: block; width: 100%; height: 100%"><div> <span>Tìm Chủ </span> </div> </a>
+            <a href="#" style="display: block; width: 100%; height: 100%"><div> <span>Đã Tìm Chủ</span> </div> </a>
+            <a href="#" style="display: block; width: 100%; height: 100%"><div> <span>đi lạc/ đã chết </span> </div> </a>
         </div>
         <div class="hospital">
             <span><h3>phòng khám</h3></span>
