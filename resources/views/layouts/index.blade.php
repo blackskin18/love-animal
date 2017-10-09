@@ -52,15 +52,15 @@
             <span><h3>danh sách</h3></span>
             <a href="/list-in-common-home" style="display: block; width: 100%; height: 100%"><div> <span>nhà chung </span> </div> </a>
             <a href="#" style="display: block; width: 100%; height: 100%"><div> <span>TNV </span> </div> </a>
-            <a href="#" style="display: block; width: 100%; height: 100%"><div> <span>Tìm Chủ </span> </div> </a>
-            <a href="#" style="display: block; width: 100%; height: 100%"><div> <span>Đã Tìm Chủ</span> </div> </a>
-            <a href="#" style="display: block; width: 100%; height: 100%"><div> <span>đi lạc/ đã chết </span> </div> </a>
+            <a href="/list_ready_to_find_the_owner" style="display: block; width: 100%; height: 100%"><div> <span>Tìm Chủ </span> </div> </a>
+            <a href="/list_has_owner" style="display: block; width: 100%; height: 100%"><div> <span>Đã Tìm Chủ</span> </div> </a>
+            <a href="/list_die" style="display: block; width: 100%; height: 100%"><div> <span>đi lạc/ đã chết </span> </div> </a>
         </div>
         <div class="hospital">
-            <span><h3>phòng khám</h3></span>
+            <a href="/hospital/list"><span><h3>phòng khám</h3></span></a>
         </div>
         <div class="volunteer">
-            <span><h3>tình nguyện viên</h3></span>
+            <a href='/volunteer/list'><span><h3>tình nguyện viên</h3></span></a>
         </div>
         <div class="owner">
            <span><h3>chủ nuôi</h3></span>

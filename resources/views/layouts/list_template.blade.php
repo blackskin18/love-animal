@@ -28,7 +28,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr dir-paginate="animal in animals|orderBy:sortKey:reverse|filter:search|itemsPerPage:10">
+                <tr dir-paginate="animal in animals|orderBy:sortKey:reverse|filter:search|itemsPerPage:7" href="https://mp3.zing.vn/">
                     <td>
                         <a href="https://www.facebook.com"> <div style="height:100%;width:100%"><img src="{{ asset('animal_image/<% animal.id %>/<% animal.file_name %>') }}" alt="<% animal.description %>" width="75" height="50"></div></a>
                         
@@ -59,7 +59,12 @@
             $interpolateProvider.startSymbol('<%');
             $interpolateProvider.endSymbol('%>');
         });
-
+        $(document).ready(function(){
+            $('table tbody tr').click(function(){
+                window.location = $(this).attr('href');
+                return false;
+            });
+        });
     </script>
     @yield('api')
 @endsection
