@@ -35,4 +35,10 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'google' => [
+        'client_id' => '1068180738247-57plrhvlisdffaunjqfhdgpq74o70ppt.apps.googleusercontent.com',
+        'client_secret' => '8fCZ8DZl2ktqet3_UisFpVcu',
+        'redirect' => 'http://lovepet.dev/auth/google/callback',
+    ],
+
 ];

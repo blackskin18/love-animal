@@ -67,8 +67,8 @@
                 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse" style="display: inline-block;">
                     <!-- Left Side Of Navbar -->
-                    <div class="navbar-nav" style="width: 80%; height: 50px;">
-                        <div style="display: inline-block; height: 100%; margin: auto; margin-left: 30%;" >
+                    <div class="navbar-nav" style="width: 70%; height: 50px;">
+                        <div style="display: inline-block; height: 100%; margin: auto; margin-left: 40%;" >
                             <button class="btn btn-info"><span class="glyphicon glyphicon-envelope"></span></button>
                             <input type="text" id="search-box" placeholder="Search" disabled class="form-control" style="display: inline-block;">
                         </div>
