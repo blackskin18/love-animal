@@ -12,9 +12,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
-    <script src="{{ asset('js/pagination/dirPagination.js') }}"></script>
     @yield('link-css')
     @yield('link-js')
     <style>
@@ -23,7 +20,7 @@
         margin: 0;
         border: 0;
     }
-    input[type=text] {
+    input#search-box {
         width: 250px;
         box-sizing: border-box;
         border: 2px solid #ccc;
@@ -40,7 +37,7 @@
         padding: 5px;
     }
 
-    input[type=text]:focus {
+    input#search-box:focus {
         width: 400px;
     }
     .navbar{
@@ -48,7 +45,7 @@
     }
     </style>
 </head>
-<body ng-app="pagination">
+<body>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -73,7 +70,7 @@
                     <div class="navbar-nav" style="width: 80%; height: 50px;">
                         <div style="display: inline-block; height: 100%; margin: auto; margin-left: 30%;" >
                             <button class="btn btn-info"><span class="glyphicon glyphicon-envelope"></span></button>
-                            <input type="text" ng-model="search" placeholder="Search">
+                            <input type="text" id="search-box" placeholder="Search" disabled class="form-control" style="display: inline-block;">
                         </div>
                     </div>
 
@@ -112,8 +109,8 @@
         @yield('index')
     </div>
 
+</body>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     @yield('script')
-</body>
 </html>
