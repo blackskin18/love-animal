@@ -2,3 +2,9 @@ div.container>div.content{
 	width: 98%;
 	margin: 10px 0 0 10%;
 }
+
+div.container>div.content div.history-box{
+	display: none;
+	height: 100px;
+	background-color: red;
+}
