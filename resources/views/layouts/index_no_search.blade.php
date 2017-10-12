@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_no_search')
 
 @section('index')
 <div style="padding: 0;margin: 0; width: 100%">
@@ -24,7 +24,7 @@
             <span><h3>ảnh</h3></span>
         </div>
     </div>
-    <div class="container1">
+    <div>
         @yield('content')
     </div>
 </div>

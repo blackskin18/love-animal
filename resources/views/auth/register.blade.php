@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_no_search')
 
 @section('index')
 <div class="container">
