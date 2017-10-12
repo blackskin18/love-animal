@@ -1,0 +1,126 @@
+div.avatar-box{
+        position: relative;
+        margin-top: 15px;
+        width: 175px;
+        height: 175px;
+        display: inline-block;
+    }
+
+    div.avatar-box>img{
+        width: 100%;
+        height: 100%;
+        margin:  10px 0 0 10px;
+    }
+
+    div.avatar-box>div.button-edit-avatar{
+        height: 30%;
+        width: 100%;
+        background-color: black;
+        color: white;
+        text-align: center;
+        padding: 12px;
+        opacity: 0.7;
+        background-color: black;
+        position: absolute;
+        bottom: 0;
+        display: none;
+    }
+    div.avatar-box:hover div.button-edit-avatar{
+        display: block;
+    }
+    div.info-box{
+        position: relative;
+    }
+    div.detail-info{
+        /* padding-top: ; */
+        margin-top:  15px;
+        width: 70%;
+        display: inline-block;
+        position: absolute;
+        top: 10px;
+        left: 31%;
+        margin-left: 10px;
+        display: block;
+    }
+    div.detail-info>table>tbody>tr>td{
+        text-align: center;
+    }
+    div.detail-info>table>tbody>tr>td:nth-of-type(1){
+        color: rgb(144, 148, 156);
+        text-align: left;
+    }
+    div.detail-info>table>tbody>tr>td:nth-of-type(2){
+        color: black;
+        font-weight: bold;
+    }
+    div.detail-info>span{
+        color: rgb(144, 148, 156);
+    }
+    
+    div.log-box{
+        width: 70%;
+        position: absolute;
+        top: 0;
+        left: 31%;
+        float: right;
+    }
+    div.log-box>div.log-content{
+        width: 100%;
+        height: 500px;
+        border: 1px solid red;
+        display: none;
+    }
+
+    div.button-show-log{
+        position: absolute;
+        width: 200px;
+        top: 210px;
+        left: 190px;
+    }
+    div.button-show-log>button:first-of-type{
+        /* margin: auto; */
+        margin-left: 65px;
+        margin-bottom: 10px;
+    }
+    div.button-show-log>button:last-of-type{
+        /* margin: auto; */
+        margin-left: 20px;
+    }
+    div.edit-info-box{
+        margin-top:  15px;
+        width: 70%;
+        display: inline-block;
+        position: absolute;
+        top: 10px;
+        left: 31%;
+        margin-left: 10px;
+        display: none;
+    }
+    div.edit-info-box table>tbody>tr>td:nth-of-type(1){
+        width: 200px;
+    }
+
+    div.edit-info-box table>tbody>tr>td:nth-of-type(2){
+        width: 450px;
+    }
+
+
+    input.form-edit{
+        width: 250px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        background-image: url('searchicon.png');
+        background-position: 10px 10px; 
+        background-repeat: no-repeat;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+        margin-top: 0px;
+        padding: 5px;
+    }
+
+    input.form-edit:focus {
+        width: 400px;
+    }

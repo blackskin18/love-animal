@@ -1,50 +1,5 @@
 @extends('layouts.app_no_search')
 
-@section('link-css')
-    <style>
-        div.menu{
-            background-color: #E9EBEE;
-            width: 15%;
-            height: 600px;
-            float: left;
-        }
-        div.menu div.list-case{
-            width: 100%;
-            margin-top: 20px;
-            text-align: left ;
-        }
-        div.menu div.list-case>span{
-            height: 30px;
-        }
-        div.menu div.list-case h3{
-            color: #90949c;
-            display: block;
-            height: 17px;
-            line-height: 17px;
-            overflow: hidden;
-        }
-        div.menu div.list-case>a{
-            /* border-top: 1px solid #333; */
-            font-size: 15px;
-            padding-left: 30px;
-            text-decoration-line: none;
-            color:  black;
-        }
-        div.menu div.list-case>a:hover{
-            background-color: #FFFFFF;
-        }
-        div.menu>div:hover:not(.list-case){
-            background-color: #ffffff;
-        }
-        div.menu>div{
-            margin-left: 10px;
-        }
-        .container1{
-            width: 85%;
-            float: right;
-        }
-    </style>
-@endsection
 @section('index')
 <div style="padding: 0;margin: 0; width: 100%">
     <div class="menu">
@@ -69,7 +24,7 @@
             <span><h3>ảnh</h3></span>
         </div>
     </div>
-    <div class="container1">
+    <div>
         @yield('content')
     </div>
 </div>

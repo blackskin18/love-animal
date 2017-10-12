@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Animal;
 use App\AnimalImage;
 use App\AnimalCondition;
+use App\Status;
+use App\AnimalFoster;
 use Illuminate\Database\Eloquent\Model;
 
 class AnimalController extends Controller
@@ -31,9 +33,13 @@ class AnimalController extends Controller
     }
 
     public function animalInfo($animalId) {
-        $animal = Animal::find($animalId)->animalImage()->with('animal')->get();
-        $a = Animal::find(2);
-        return $animal;
+        $images = Animal::find($animalId)->animalImage()->get();
+        $animal = Animal::find($animalId);
+        $status = Status::find($animal->status);
+        $animal_fosters = AnimalFoster::where('animal_id', $animalId)->get();
+        // dd($animal_foster);
+        // dd($animal);
+        return view('animal/detail_info')->with('animal', $animal)->with('images', $images)->with('status',$status)->with('animal_fosters', $animal_fosters);
     }
 
 }

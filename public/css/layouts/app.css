@@ -1,0 +1,69 @@
+*{
+        padding: 0;
+        margin: 0;
+        border: 0;
+    }
+    input[type=text] {
+        width: 250px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        background-image: url('searchicon.png');
+        background-position: 10px 10px; 
+        background-repeat: no-repeat;
+        padding: 12px 20px 12px 40px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+        margin-top: 5px;
+        padding: 5px;
+    }
+
+    input[type=text]:focus {
+        width: 400px;
+    }
+    .navbar{
+        margin: 0;
+    }
+    div.menu{
+            background-color: #E9EBEE;
+            width: 15%;
+            height: 600px;
+            float: left;
+        }
+        div.menu div.list-case{
+            width: 100%;
+            margin-top: 20px;
+            text-align: left ;
+        }
+        div.menu div.list-case>span{
+            height: 30px;
+        }
+        div.menu div.list-case h3{
+            color: #90949c;
+            display: block;
+            height: 17px;
+            line-height: 17px;
+            overflow: hidden;
+        }
+        div.menu div.list-case>a{
+            /* border-top: 1px solid #333; */
+            font-size: 15px;
+            padding-left: 30px;
+            text-decoration-line: none;
+            color:  black;
+        }
+        div.menu div.list-case>a:hover{
+            background-color: #FFFFFF;
+        }
+        div.menu>div:hover:not(.list-case){
+            background-color: #ffffff;
+        }
+        div.menu>div{
+            margin-left: 10px;
+        }
+        .container1{
+            width: 85%;
+            float: right;
+        }

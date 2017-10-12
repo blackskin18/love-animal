@@ -12,38 +12,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/layouts/app_no_search.css') }}" rel="stylesheet">
     @yield('link-css')
     @yield('link-js')
-    <style>
-    *{
-        padding: 0;
-        margin: 0;
-        border: 0;
-    }
-    input#search-box {
-        width: 250px;
-        box-sizing: border-box;
-        border: 2px solid #ccc;
-        border-radius: 4px;
-        font-size: 16px;
-        background-color: white;
-        background-image: url('searchicon.png');
-        background-position: 10px 10px; 
-        background-repeat: no-repeat;
-        padding: 12px 20px 12px 40px;
-        -webkit-transition: width 0.4s ease-in-out;
-        transition: width 0.4s ease-in-out;
-        margin-top: 5px;
-        padding: 5px;
-    }
-
-    input#search-box:focus {
-        width: 400px;
-    }
-    .navbar{
-        margin: 0;
-    }
-    </style>
 </head>
 <body>
     <div id="app">

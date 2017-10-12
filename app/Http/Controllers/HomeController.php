@@ -53,7 +53,7 @@ class HomeController extends Controller
 
     public function getListInCommonHome()
     {
-        return view('list_animal/in_common_home');
+        return view('animal/list_in_common_home');
     }
 
     public function postListInCommonHome()
@@ -64,7 +64,7 @@ class HomeController extends Controller
 
     public function getListReadyToFindTheOwner()
     {
-        return view('list_animal/ready_to_find_the_owner');
+        return view('animal/list_ready_to_find_the_owner');
     }
 
     public function postListReadyToFindTheOwner()
@@ -75,7 +75,7 @@ class HomeController extends Controller
 
     public function getListHasOwner()
     {
-        return view('list_animal/list_has_owner');
+        return view('animal/list_has_owner');
     }
     public function postListHasOwner()
     {
@@ -85,7 +85,7 @@ class HomeController extends Controller
 
     public function getListDie ()
     {
-        return view('list_animal/list_die');
+        return view('animal/list_die');
     }
     public function postListDie()
     {
