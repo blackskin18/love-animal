@@ -35,6 +35,16 @@ route::get('/animal/list_die', 'HomeController@getListDie');
 route::get('/api/animal/list_die','HomeController@postListDie');
 
 route::get('/animal/detail_info/{animal_id}', 'AnimalController@animalInfo');
+route::post('/animal/edit/edit-create-at/{animal_id}', 'AnimalController@editCreateAt');
+// route::post('/animal/edit/edit-status/{animal_id}', 'AnimalController@editStatus');
+route::post('/animal/edit/edit-address/{animal_id}', 'AnimalController@editAddress');
+route::post('/animal/edit/edit-name/{animal_id}', 'AnimalController@editName');
+route::post('/animal/edit/edit-type/{animal_id}', 'AnimalController@editType');
+route::post('/animal/edit/edit-description/{animal_id}', 'AnimalController@editDescription');
+
+
+
+
 
 route::get('/hospital/list', 'HospitalController@getListHospital');
 route::get('/api/get_list_hospital' , 'HospitalController@postListHospital');

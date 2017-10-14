@@ -11,39 +11,80 @@ $(function () {
         });
     });
 
-    var oldValue = $('button#btn-edit-create-at').parent().siblings().text();
-    createButtonEdit('btn-edit-create-at');
-    createButtonCancelEdit('btn-edit-create-at', oldValue);
+    createFormEditOneAttribute('btn-edit-create-at');
+    createFormEditOneAttribute('btn-edit-status');
+    createFormEditOneAttribute('btn-edit-address');
+    createFormEditOneAttribute('btn-edit-name');
+    createFormEditOneAttribute('btn-edit-type');
+    createFormEditOneAttribute('btn-edit-description');
 
-    
-    
 });
 
-function createButtonEdit(buttonId){
-    var oldValue = $('button#'+buttonId).parent().siblings().text();
+function createFormEditOneAttribute(buttonId){
+    this.oldValue = $('button#'+buttonId).parent().siblings().text().trim();
+    console.log(this.oldValue);
+    createButtonEdit(buttonId, this.oldValue);
+    createButtonCancelEdit(buttonId, this.oldValue);
+}
+
+function createButtonEdit(buttonId, oldValue){
     $('button#'+buttonId).click(function(){
         $('button#'+buttonId).parent().siblings().html(`
-            <input type="text" value=${oldValue}/>
-            <button>
+            <input type="text" value="`+oldValue.trim()+`"/>
+            <button id="${buttonId+'-submit'}">
                 gửi
             </button>
             `);
-
         $('button#'+buttonId).css({display: 'none',float: 'right'});
         $('button#'+buttonId+'-cancel').css({display: 'block', float: 'right'});
+
+        $('button#'+buttonId+'-submit').click(function(){
+            var data = $('button#'+buttonId+'-submit').siblings().val();
+            var nameUrl = buttonId.split("-");
+                nameUrl.splice(0,1);
+            var animalId = $('input[type="hidden"]#animal-id').val();
+
+            url = window.location.origin + "/animal/edit/"+ nameUrl.join("-") +"/" +animalId;
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                }
+            });
+            $.ajax({
+                url: url,
+                type: "post",
+                datatType: "json",
+                data: {
+                    data,
+                },
+                buttonId: buttonId,
+                success: function(data){
+                    $('button#'+this.buttonId+'-cancel').parent().siblings().html(`
+                            <p>
+                                ${data}
+                            </p>
+                        `);
+                    $('button#'+this.buttonId).css({display: 'block', float: 'right'});
+                    $('button#'+this.buttonId+'-cancel').css({display: 'none',float: 'right'});
+                },
+                error: function(data) {
+                    alert('error');
+                }
+            });
+
+        });
     });
-    
 
 }
 
 function createButtonCancelEdit(buttonId, oldValue){
     $('button#'+buttonId+'-cancel').click(function(){
         $('button#'+buttonId+'-cancel').parent().siblings().html(`
-                <p class="col-lg-9">
+                <p>
                     ${oldValue}
                 </p>
             `);
-    $('button#'+buttonId).css({display: 'block', float: 'right'});
-    $('button#'+buttonId+'-cancel').css({display: 'none',float: 'right'});
+        $('button#'+buttonId).css({display: 'block', float: 'right'});
+        $('button#'+buttonId+'-cancel').css({display: 'none',float: 'right'});
     });
 }

@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="container info-box" style="width: 95%; margin:0">
+<div class="info-box">
     <input type="text" disabled hidden="" id="user_id" value="{{$user->id}}">
     <div class="avatar-box">
         <img src="https://scontent.fhan2-3.fna.fbcdn.net/v/t1.0-9/20638091_757607134419193_4430446300429056495_n.jpg?oh=0b027c93edb08c6f14ca9f008eb4ef66&oe=5A4040CF" alt="avatar">

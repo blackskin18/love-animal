@@ -2,8 +2,8 @@
 
 @section('content')
 <div >
-    <div class="table-list-animal" ng-controller="listData">
-        <table class="table table-bordered" ng-app>
+    <div class="table-list-animal" id="table-list-animal" ng-controller="listData" style="display:  none">
+        <table class="table table-bordered">
             <thead>
                <tr>
                     <th>

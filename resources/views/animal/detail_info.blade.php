@@ -7,6 +7,12 @@
 @endsection
 @section('content')
 <div class="container">
+	<input type="hidden" id="animal-id" value="{{$animal->id}}" disabled>
+	@foreach($all_status as $status)
+	<!-- @if($status->id == $animal->status)
+		<input type="hidden" id="animal-id" value="{{$animal->id}}" disabled>
+	@endif -->
+	@endforeach
     <div class="content"> 
     	<div>
     		<h3 class="text-center"> ca {{$animal->id}} </h3>
@@ -49,9 +55,15 @@
 									<td>Trạng thái</td>
 									<td>
 										<div class="row">
-											<p class="col-lg-9">
-												{{$status->name}}
-											</p>
+											<div class="col-lg-9">
+												<p>	
+													@foreach($all_status as $status)
+														@if($status->id == $animal->status)
+															{{$status->name}}
+														@endif
+													@endforeach
+												</p>
+											</div>
 											<div class="col-lg-3 text-right">
 												<button class="btn btn-primary btn-edit" id="btn-edit-status">
 													edit
@@ -67,9 +79,11 @@
 									<td>Địa điểm</td>
 									<td>
 										<div class="row">
-											<p class="col-lg-9">
-												{{$animal->address}}
-											</p>
+											<div class="col-lg-9">
+												<p>
+													{{$animal->address}}
+												</p>
+											</div>
 											<div class="col-lg-3 text-right">
 												<button class="btn btn-primary btn-edit" id="btn-edit-address">
 													edit
@@ -85,9 +99,11 @@
 									<td>Tên</td>
 									<td>
 										<div class="row">
-											<p class="col-lg-9">
-												{{$animal->name}}
-											</p>
+											<div class="col-lg-9">
+												<p>
+													{{$animal->name}}
+												</p>
+											</div>
 											<div class="col-lg-3 text-right">
 												<button class="btn btn-primary btn-edit" id="btn-edit-name">
 													edit
@@ -103,9 +119,11 @@
 									<td>tuổi</td>
 									<td>
 										<div class="row">
-											<p class="col-lg-9">
-												{{$animal->age}}
-											</p>
+											<div class="col-lg-9">
+												<p>
+													{{$animal->age}}
+												</p>
+											</div>
 											<div class="col-lg-3 text-right">
 												<button class="btn btn-primary btn-edit" id="btn-edit-age">
 													edit
@@ -121,9 +139,11 @@
 									<td>Loài</td>
 									<td>
 										<div class="row">
-											<p class="col-lg-9">
-												{{$animal->type}}
-											</p>
+											<div class="col-lg-9">
+												<p>
+													{{$animal->type}}
+												</p>
+											</div>
 											<div class="col-lg-3 text-right">
 												<button class="btn btn-primary btn-edit" id="btn-edit-type">
 													edit
@@ -139,9 +159,11 @@
 									<td>Trường hợp</td>
 									<td>
 										<div class="row">
-											<p class="col-lg-9">
-												{{$animal->description}}
-											</p>
+											<div class="col-lg-9">
+												<p>
+													{{$animal->description}}
+												</p>
+											</div>
 											<div class="col-lg-3 text-right">
 												<button class="btn btn-primary btn-edit" id="btn-edit-description">
 													edit

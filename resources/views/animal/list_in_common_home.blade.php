@@ -16,5 +16,7 @@
                 $scope.reverse = !$scope.reverse; //if true make it false and vice versa
             }
         });
+        $('div#table-list-animal').css('display', 'block');
+        
     </script>
 @endsection

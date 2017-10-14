@@ -9,6 +9,7 @@ use App\AnimalCondition;
 use App\Status;
 use App\AnimalFoster;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class AnimalController extends Controller
 {
@@ -32,14 +33,69 @@ class AnimalController extends Controller
         return $a;
     }
 
-    public function animalInfo($animalId) {
+    public function animalInfo($animalId) 
+    {
         $images = Animal::find($animalId)->animalImage()->get();
         $animal = Animal::find($animalId);
-        $status = Status::find($animal->status);
-        $animal_fosters = AnimalFoster::where('animal_id', $animalId)->get();
+        $allStatus = Status::all();
+        $animalFosters = AnimalFoster::where('animal_id', $animalId)->get();
         // dd($animal_foster);
         // dd($animal);
-        return view('animal/detail_info')->with('animal', $animal)->with('images', $images)->with('status',$status)->with('animal_fosters', $animal_fosters);
+        return view('animal/detail_info')->with('animal', $animal)->with('images', $images)->with('all_status',$allStatus)->with('animal_fosters', $animalFosters);
     }
+
+
+    public function editCreateAt(Request $request, $animalId)
+    {
+        $animal = Animal::find($animalId);
+        $animal->created_at = $request->data;
+        $animal->save();
+        return $animal->created_at;
+    }
+
+    // public function editStatus(Request $request, $animalId)
+    // {
+    //     $animal = Animal::find($animalId);
+    //     $animal->status = $request->data;
+    //     $animal->save();
+    //     return $animal->
+    // }
+
+
+    public function editAddress(Request $request, $animalId)
+    {
+        $animal = Animal::find($animalId);
+        $animal->address = $request->data;
+        $animal->save();
+        return $animal->address;
+    }
+
+
+    public function editName(Request $request, $animalId)
+    {
+        $animal = Animal::find($animalId);
+        $animal->name = $request->data;
+        $animal->save();
+        return $animal->name;
+    }
+
+
+    public function editType(Request $request, $animalId)
+    {
+        $animal = Animal::find($animalId);
+        $animal->type = $request->data;
+        $animal->save();
+        return $animal->type;
+    }
+
+
+    public function editDescription(Request $request, $animalId)
+    {
+        $animal = Animal::find($animalId);
+        $animal->description = $request->data;
+        $animal->save();
+        return $animal->description;
+    }
+
 
 }
