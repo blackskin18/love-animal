@@ -27,6 +27,17 @@ class HomeController extends Controller
                     ->select('animals.*', 'animal_images.file_name', 'statuses.name as status'  )
                     ->where($attribute, $value)
                     ->get();
+
+        foreach ($animals as $key => $animal) {
+            if($key != 0 && $animals[$key-1]->id == $animals[$key]->id ){
+                $a[] = $key;
+            }
+        }
+        if(isset($a)){
+            foreach ($a as $key => $b) {
+                unset($animals[$b]);
+            }
+        }
         return $animals;
     }
 
@@ -48,6 +59,17 @@ class HomeController extends Controller
                     ->join('statuses', 'animal_status_histories.status_id', 'statuses.id', '=')
                     ->select('animals.*', 'animal_images.file_name', 'statuses.name as status'  )
                     ->get();
+
+        foreach ($animals as $key => $animal) {
+            if($key != 0 && $animals[$key-1]->id == $animals[$key]->id ){
+                $a[] = $key;
+            }
+        }
+        if(isset($a)){
+            foreach ($a as $key => $b) {
+                unset($animals[$b]);
+            }
+        }
         return $animals;
     }
 

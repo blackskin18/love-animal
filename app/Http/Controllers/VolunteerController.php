@@ -30,7 +30,7 @@ class VolunteerController extends Controller
     }
 
     public function volunteerInfo($user_id)
-    {
+    {   
         $user = User::find($user_id);
         // return $user;
         return view('volunteer/detail_info')->with('user',$user);

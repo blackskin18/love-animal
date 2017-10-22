@@ -28,9 +28,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr dir-paginate="animal in animals|orderBy:sortKey:reverse|filter:search|itemsPerPage:7" ng-click="showDetailAnimal(animal)" >
+                <tr dir-paginate="(key, animal) in animals|orderBy:sortKey:reverse|filter:search|itemsPerPage:15"  ng-click="showDetailAnimal(animal)" >
                     <td>
-                        <div style="height:100%;width:100%"><img src="{{ asset('animal_image/<% animal.id %>/<% animal.file_name %>') }}" alt="<% animal.description %>" width="75" height="50"></div>
+                        <div  style="height:100%;width:100%"><img src="{{ asset('animal_image/<% animal.id %>/<% animal.file_name %>') }}" alt="<% animal.description %>" width="75" height="50"></div>
                         
                     </td>
                     <td> <div style="height:100%;width:100%"><% animal.id %> </div></td>

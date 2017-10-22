@@ -34,16 +34,18 @@ route::get('/api/animal/list_has_owner','HomeController@postListHasOwner');
 route::get('/animal/list_die', 'HomeController@getListDie');
 route::get('/api/animal/list_die','HomeController@postListDie');
 
-route::get('/animal/detail_info/{animal_id}', 'AnimalController@animalInfo');
-route::post('/animal/edit/edit-create-at/{animal_id}', 'AnimalController@editCreateAt');
+route::get('/animal/detail_info/{animal_id}', 'AnimalController@getAnimalInfo');
+
+route::post('/animal/add_image', 'AnimalController@postAddImage')->middleware('system_admin');
+route::post('/animal/edit/edit-create-at/{animal_id}', 'AnimalController@editCreateAt')->middleware('system_admin');
 // route::post('/animal/edit/edit-status/{animal_id}', 'AnimalController@editStatus');
-route::post('/animal/edit/edit-address/{animal_id}', 'AnimalController@editAddress');
-route::post('/animal/edit/edit-name/{animal_id}', 'AnimalController@editName');
-route::post('/animal/edit/edit-type/{animal_id}', 'AnimalController@editType');
-route::post('/animal/edit/edit-description/{animal_id}', 'AnimalController@editDescription');
+route::post('/animal/edit/edit-address/{animal_id}', 'AnimalController@editAddress')->middleware('system_admin');
+route::post('/animal/edit/edit-name/{animal_id}', 'AnimalController@editName')->middleware('system_admin');
+route::post('/animal/edit/edit-type/{animal_id}', 'AnimalController@editType')->middleware('system_admin');
+route::post('/animal/edit/edit-description/{animal_id}', 'AnimalController@editDescription')->middleware('system_admin');
 
-
-
+route::get('/animal_image/delete/{imageId}', 'AnimalController@deleteImage');
+route::post('/animal_image/change/{imageId}', 'AnimalController@changeImage');
 
 
 route::get('/hospital/list', 'HospitalController@getListHospital');
@@ -53,3 +55,6 @@ route::get('/volunteer/list', 'VolunteerController@getListVolunteer');
 route::get('/api/get_list_volunteer' , 'VolunteerController@postListVolunteer');
 route::get('volunteer/info/{user_id}', 'VolunteerController@volunteerInfo');
 route::post('volunteer/edit_info/{user_id}', 'VolunteerController@editInfo');
+
+
+route::get('/api/get_all_status', 'StatusController@getAllStatus');

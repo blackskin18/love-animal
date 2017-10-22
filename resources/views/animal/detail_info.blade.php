@@ -6,7 +6,7 @@
     <script src="{{ asset('js/animal/detail_info.js') }}"></script>
 @endsection
 @section('content')
-<div class="container">
+<div class="">
 	<input type="hidden" id="animal-id" value="{{$animal->id}}" disabled>
 	@foreach($all_status as $status)
 	<!-- @if($status->id == $animal->status)
@@ -17,8 +17,48 @@
     	<div>
     		<h3 class="text-center"> ca {{$animal->id}} </h3>
 			<div class="row">
-		        <div class="col-lg-4" style="background-color: blue;">
-		        	ảnh
+		        <div class="col-lg-4">
+		        	<div class="row">
+		        		@if (count($errors) > 0)
+					        <ul>
+					            @foreach ($errors->all() as $error)
+					                <li>{{ $error }}</li>
+					            @endforeach
+					        </ul>
+					    @endif
+		        		<form action="/animal/add_image" method="post"  enctype="multipart/form-data">
+							{{csrf_field()}}
+						  	<input type="hidden" name="animal_id" value="{{$animal->id}}" readonly>
+						  	<input type="file" name="photos[]" multiple>
+						  	<input type="submit" class="btn btn-primary"value="thêm ảnh">
+						</form>
+		        	</div>
+		        	<div class="row">
+		        		<div class="col-lg-12" style="padding: 0" id="list-image">
+		        			<?php $sum_image = 0; ?>
+				        	@foreach($images as $key => $image)
+								<div class="image-box" >
+									<img src="{{ asset('animal_image/'.$image->animal_id.'/'.$image->file_name) }}" alt="ảnh ca {{$image->animal_id}}" >
+									<div class="delete" id="delete-image-{{$key+1}}">
+										<input type="hidden" value="{{$image->id}}" disabled>
+										Xóa ảnh
+									</div>
+									<div class="update" id="update-image-{{$key+1}}" style="">
+										Thay ảnh
+										<input type="hidden" value="{{$image->id}}" disabled>
+										<form action="/ok" enctype="multipart/form-data" class="change-photo" method="POST">
+											<div class="form-group">
+												<input type="file" class="change-photo" name="photo" title="thay ảnh" style="position: absolute; top:0; left:0; margin: 0px; padding: 0px; cursor: pointer; opacity: 0; height: 100%; width: 100%">
+
+											</div>	
+									  	</form>
+									</div>
+								</div>
+								<?php $sum_image = $key+1; ?>
+				        	@endforeach
+				        	<input type="hidden" value="{{$sum_image}}" id="sum-image" disabled>
+		        		</div>
+		        	</div>
 		        </div>
 		        <div class="col-lg-8" style="">
 		        	<div class="button-box text-center">
@@ -41,12 +81,14 @@
 												</p>
 											</div>
 											<div class="col-lg-3 text-right">
-												<button class="btn btn-primary " id="btn-edit-create-at">
-													edit
-												</button>
-												<button class="btn btn-primary " id="btn-edit-create-at-cancel" style="display: none">
-													hủy
-												</button>
+												@if($user_level == 1 || $user_level == 2 || $user_level == 3 )
+													<button class="btn btn-primary " id="btn-edit-create-at">
+														edit
+													</button>
+													<button class="btn btn-primary " id="btn-edit-create-at-cancel" style="display: none">
+														hủy
+													</button>
+												@endif
 											</div>
 										</div>
 									</td>
@@ -65,12 +107,15 @@
 												</p>
 											</div>
 											<div class="col-lg-3 text-right">
-												<button class="btn btn-primary btn-edit" id="btn-edit-status">
-													edit
-												</button>
-												<button class="btn btn-primary " id="btn-edit-status-cancel" style="display: none">
-													hủy
-												</button>
+												@if($user_level == 1 || $user_level == 2 || $user_level == 3 )
+
+													<button class="btn btn-primary btn-edit" id="btn-edit-status">
+														edit
+													</button>
+													<button class="btn btn-primary " id="btn-edit-status-cancel" style="display: none">
+														hủy
+													</button>
+												@endif
 											</div>
 										</div>
 									</td>
@@ -85,18 +130,20 @@
 												</p>
 											</div>
 											<div class="col-lg-3 text-right">
-												<button class="btn btn-primary btn-edit" id="btn-edit-address">
-													edit
-												</button>
-												<button class="btn btn-primary " id="btn-edit-address-cancel" style="display: none">
-													hủy
-												</button>
+												@if($user_level == 1 || $user_level == 2 || $user_level == 3 )
+													<button class="btn btn-primary btn-edit" id="btn-edit-address">
+														edit
+													</button>
+													<button class="btn btn-primary " id="btn-edit-address-cancel" style="display: none">
+														hủy
+													</button>
+												@endif
 											</div>
 										</div>
 									</td>
 								</tr>
 								<tr>
-									<td>Tên</td>
+									<td>trường hợp</td>
 									<td>
 										<div class="row">
 											<div class="col-lg-9">
@@ -105,12 +152,14 @@
 												</p>
 											</div>
 											<div class="col-lg-3 text-right">
-												<button class="btn btn-primary btn-edit" id="btn-edit-name">
-													edit
-												</button>
-												<button class="btn btn-primary " id="btn-edit-name-cancel" style="display: none">
-													hủy
-												</button>
+												@if($user_level == 1 || $user_level == 2 || $user_level == 3 )
+													<button class="btn btn-primary btn-edit" id="btn-edit-name">
+														edit
+													</button>
+													<button class="btn btn-primary " id="btn-edit-name-cancel" style="display: none">
+														hủy
+													</button>
+												@endif
 											</div>
 										</div>
 									</td>
@@ -125,12 +174,14 @@
 												</p>
 											</div>
 											<div class="col-lg-3 text-right">
-												<button class="btn btn-primary btn-edit" id="btn-edit-age">
-													edit
-												</button>
-												<button class="btn btn-primary " id="btn-edit-age-cancel" style="display: none">
-													hủy
-												</button>
+												@if($user_level == 1 || $user_level == 2 || $user_level == 3 )	
+													<button class="btn btn-primary btn-edit" id="btn-edit-age">
+														edit
+													</button>
+													<button class="btn btn-primary " id="btn-edit-age-cancel" style="display: none">
+														hủy
+													</button>
+												@endif
 											</div>
 										</div>
 									</td>
@@ -145,18 +196,20 @@
 												</p>
 											</div>
 											<div class="col-lg-3 text-right">
-												<button class="btn btn-primary btn-edit" id="btn-edit-type">
-													edit
-												</button>
-												<button class="btn btn-primary btn-edit" id="btn-edit-type-cancel" style="display: none">
-													hủy
-												</button>
+												@if($user_level == 1 || $user_level == 2 || $user_level == 3 )
+													<button class="btn btn-primary btn-edit" id="btn-edit-type">
+														edit
+													</button>
+													<button class="btn btn-primary btn-edit" id="btn-edit-type-cancel" style="display: none">
+														hủy
+													</button>
+												@endif
 											</div>
 										</div>
 									</td>
 								</tr>
 								<tr>
-									<td>Trường hợp</td>
+									<td>mô tả</td>
 									<td>
 										<div class="row">
 											<div class="col-lg-9">
@@ -176,17 +229,14 @@
 									</td>
 								</tr>
 								<tr>
-									<td>Mô tả</td>
+									<td>nhật ký điều trị</td>
 									<td>
 										@foreach($animal_fosters as $animal_foster)
 											{{$animal_foster->note}} <br>
 										@endforeach
 									</td>
 								</tr>
-								<tr>
-									<td>Nhật ký điều trị</td>
-									<td>chưa xử lý</td>
-								</tr>
+								
 							</tbody>
 						</table>
 					</div>

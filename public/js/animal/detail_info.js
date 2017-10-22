@@ -16,25 +16,122 @@ $(function () {
     createFormEditOneAttribute('btn-edit-address');
     createFormEditOneAttribute('btn-edit-name');
     createFormEditOneAttribute('btn-edit-type');
+    createFormEditOneAttribute('btn-edit-age');
     createFormEditOneAttribute('btn-edit-description');
+
+    var sumImage = $('input#sum-image').val();
+
+    for(let i=1 ; i<=sumImage; i++){
+        $('div#delete-image-'+i).click(function(){
+            var agree =confirm("bạn có muốn xóa ảnh này không?");
+            if(agree){
+                var imageId = $('div#delete-image-'+i+' input[type=hidden]').val();
+                url = window.location.origin + "/animal_image/delete/" + imageId;
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    }
+                });
+                $.ajax({
+                    url: url,
+                    type: "get",
+                    datatType: "json",
+                    success: function(data){
+                        location.reload();
+                    },
+                    error: function(data) {
+                        alert('error');
+                    }
+                });
+            }
+        });
+
+        $('div#update-image-'+ i +' input[type="file"]').change(function(){
+            var agree =confirm("Bạn có muốn thay đổi ảnh này không?");
+            if(agree){
+                var imageId = $('div#update-image-'+i+' input[type=hidden]').val();
+                url = window.location.origin + "/animal_image/change/" + imageId;
+                // var data = $('div#update-image-'+i+' input[type=file]').val();
+                var file_data = $('div#update-image-'+i+' input[type=file]').prop('files')[0];
+                var form_data = new FormData();                  
+                form_data.append('file', file_data);
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    }
+                });
+                $.ajax({
+                    url: url,
+                    data:new FormData($('div#update-image-'+i+' form.change-photo')[0]),
+                    dataType:'json',
+                    async:false,
+                    type:'post',
+                    processData: false,
+                    contentType: false,                        
+                    success: function(data){
+                        location.reload();
+                    },
+                    error: function(data) {
+                        alert('error');
+                    }
+                });
+            }
+        });
+    }
+
+
 
 });
 
 function createFormEditOneAttribute(buttonId){
     this.oldValue = $('button#'+buttonId).parent().siblings().text().trim();
-    console.log(this.oldValue);
     createButtonEdit(buttonId, this.oldValue);
     createButtonCancelEdit(buttonId, this.oldValue);
 }
 
 function createButtonEdit(buttonId, oldValue){
     $('button#'+buttonId).click(function(){
-        $('button#'+buttonId).parent().siblings().html(`
-            <input type="text" value="`+oldValue.trim()+`"/>
-            <button id="${buttonId+'-submit'}">
+        if(buttonId == 'btn-edit-status'){
+            url = window.location.origin + "/api/get_all_status";
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                }
+            });
+            $.ajax({
+                url: url,
+                type: "get",
+                datatType: "json",
+                buttonId: buttonId,
+                success: function(data){
+                    console.log(data);
+                    var optionTag = "";
+                    for(let i =0; i<data.length; i++){
+                        optionTag +=  '<option value="'+data[i].id+'">'+data[i].name+'</option>'   
+                    }
+                    $('button#'+this.buttonId).parent().siblings().html(`
+                        <select class="form-control" id="sel1">
+                            ${optionTag}
+                        </select>
+                        <button class="btn btn-primary" id="${this.buttonId+'-submit'}">
+                            gửi
+                        </button>
+                    `);
+                },
+                error: function(data) {
+                    alert('error');
+                }
+            });
+        } else {
+            $('button#'+buttonId).parent().siblings().html(`
+            <input type="text" class="form-control" value="`+oldValue.trim()+`"/>
+            <button class="btn btn-primary" id="${buttonId+'-submit'}">
                 gửi
             </button>
             `);
+        }
+
+        
         $('button#'+buttonId).css({display: 'none',float: 'right'});
         $('button#'+buttonId+'-cancel').css({display: 'block', float: 'right'});
 
