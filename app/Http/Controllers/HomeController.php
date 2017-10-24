@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Animal;
+use App\AnimalImage;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -51,12 +52,12 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function postListPet()
+    public function postListAllAnimal()
     {
         $animals = DB::table('animals')
-                    ->join('animal_images', 'animals.id', '=', 'animal_images.animal_id')
-                    ->join('animal_status_histories', 'animals.id', '=', 'animal_status_histories.animal_id')
-                    ->join('statuses', 'animal_status_histories.status_id', 'statuses.id', '=')
+                    ->leftJoin('animal_images', 'animals.id', '=', 'animal_images.animal_id')
+                    // ->join('animal_status_histories', 'animals.id', '=', 'animal_status_histories.animal_id')
+                    ->leftJoin('statuses', 'animals.status', 'statuses.id', '=')
                     ->select('animals.*', 'animal_images.file_name', 'statuses.name as status'  )
                     ->get();
 
@@ -113,6 +114,23 @@ class HomeController extends Controller
     {
         $animals = $this->getList('statuses.id',4);
         return $animals;
+    }
+
+    public function getListImageAnimal(){
+        // $images = $this->postListAllAnimal();
+        $images = AnimalImage::orderBy('animal_id', 'desc')->get();
+        foreach ($images as $key => $image) {
+            if($key != 0 && $images[$key-1]->animal_id == $images[$key]->animal_id ){
+                $a[] = $key;
+            }
+        }
+        if(isset($a)){
+            foreach ($a as $key => $b) {
+                unset($images[$b]);
+            }
+        }
+        // return $images;
+        return view('animal/list_image_all_animal')->with('images', $images);
     }
 
 }

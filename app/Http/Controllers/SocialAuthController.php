@@ -34,7 +34,6 @@ class SocialAuthController extends Controller
     public function handleProviderCallback($provider)
     {
         $user = Socialite::driver($provider)->user();
-
         $authUser = $this->findOrCreateUser($user, $provider);
         Auth::login($authUser, true);
 
@@ -56,6 +55,7 @@ class SocialAuthController extends Controller
             $authUser = User::where('email',$user->email)->first();
             $authUser->provider = $provider;
             $authUser->provider_id = $user->id;
+            $authUser->name = $user->name;
             $authUser->save();
 
             return $authUser;

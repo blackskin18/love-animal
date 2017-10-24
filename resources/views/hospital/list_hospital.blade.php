@@ -20,11 +20,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr dir-paginate="hospital in hospitals|orderBy:sortKey:reverse|filter:search|itemsPerPage:7">
-                    <td><a href="https://www.facebook.com"> <div style="height:100%;width:100%"><% hospital.name %> </div></a></td>
-                    <td><a href="https://www.facebook.com"> <div style="height:100%;width:100%"><% hospital.phone %></div></a></td>
-                    <td><a href="https://www.facebook.com"> <div style="height:100%;width:100%"><% hospital.address %></div></a></td>
-                    <td><a href="https://www.facebook.com"> <div style="height:100%;width:100%"><% hospital.note %></div></a></td>
+                <tr dir-paginate="hospital in hospitals|orderBy:sortKey:reverse|filter:search|itemsPerPage:7" ng-click="showDetailHospital(hospital)">
+                    <td> <div style="height:100%;width:100%"><% hospital.name %> </div></a></td>
+                    <td> <div style="height:100%;width:100%"><% hospital.phone %></div></a></td>
+                    <td> <div style="height:100%;width:100%"><% hospital.address %></div></a></td>
+                    <td> <div style="height:100%;width:100%"><% hospital.note %></div></a></td>
                 </tr>
             </tbody>
         </table>
@@ -52,6 +52,9 @@
                 $scope.hospitals = response.data;
                 console.log($scope.hospitals);
             });
+            $scope.showDetailHospital = function(hospital) {
+               window.open(window.location.origin + "/" +"hospital/detail_info/" + hospital.id);
+            };
             $scope.sort = function(keyname){
                 $scope.sortKey = keyname;   //set the sortKey to the param passed
                 $scope.reverse = !$scope.reverse; //if true make it false and vice versa

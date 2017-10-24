@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\hospital;
+use App\Hospital;
+use App\AnimalHospital;
+use App\AnimalImage;
 use Illuminate\Support\Facades\DB;
 
 class HospitalController extends Controller
@@ -25,8 +27,30 @@ class HospitalController extends Controller
 
     public function postListHospital()
     {
-        $hospitals = hospital::All();
+        $hospitals = Hospital::All();
         return $hospitals;
+    }
+
+    public function detailHospital($hospitalId){
+        $hospital = Hospital::find($hospitalId);
+        $listRemove = [];
+        $animalHospitals = AnimalHospital::orderBy('animal_id')->where('hospital_id', $hospitalId)->get();
+        foreach ($animalHospitals as $key => $animalHospital) {
+            $animalImage = AnimalImage::where('animal_id', $animalHospital->animal_id)->get();
+            if(!$animalImage->isEmpty()){
+                $animalHospitals[$key]['file_name'] = $animalImage[0]->file_name;          
+            }
+            if($key > 0 && $animalHospitals[$key-1]->animal_id == $animalHospital->animal_id){
+                $listRemove[] = $key;
+            }
+        }
+        if($listRemove){
+            foreach ($listRemove as $key => $value) {
+                unset($animalHospitals[$value]);
+            }
+        }
+
+        return view('hospital/detail_info')->with('animal_hospitals', $animalHospitals)->with('hospital', $hospital);
     }
 
 }
