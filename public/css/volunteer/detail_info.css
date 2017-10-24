@@ -1,15 +1,19 @@
 div.avatar-box{
         position: relative;
-        margin-top: 15px;
+        /* margin-top: 15px; */
         width: 175px;
         height: 175px;
         display: inline-block;
+        top: 15px;
+        left: 15px;
     }
 
     div.avatar-box>img{
         width: 100%;
         height: 100%;
-        margin:  10px 0 0 10px;
+        position: absolute;
+        top: 0;
+        left: 0;
     }
 
     div.avatar-box>div.button-edit-avatar{
@@ -28,9 +32,9 @@ div.avatar-box{
     div.avatar-box:hover div.button-edit-avatar{
         display: block;
     }
-    div.info-box{
+/*     div.info-box{
         position: relative;
-    }
+    } */
     div.detail-info{
         /* padding-top: ; */
         margin-top:  15px;
@@ -74,8 +78,8 @@ div.avatar-box{
     div.button-show-log{
         position: absolute;
         width: 200px;
-        top: 210px;
-        left: 190px;
+        top: 260px;
+        left: 200px;
     }
     div.button-show-log>button:first-of-type{
         /* margin: auto; */

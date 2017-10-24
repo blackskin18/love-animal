@@ -2,8 +2,8 @@
 
 @section('content')
 <div >
-    <div class="table-list-animal" ng-controller="listData">
-        <table class="table table-bordered" ng-app>
+    <div class="table-list-animal" id="table-list-animal" ng-controller="listData" style="display:  none">
+        <table class="table table-bordered">
             <thead>
                <tr>
                     <th>
@@ -28,17 +28,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr dir-paginate="animal in animals|orderBy:sortKey:reverse|filter:search|itemsPerPage:7" ng-click="showDetailAnimal(animal)" >
+                <tr dir-paginate="(key, animal) in animals|orderBy:sortKey:reverse|filter:search|itemsPerPage:15"  ng-click="showDetailAnimal(animal)" >
                     <td>
-                        <a href="https://www.facebook.com"> <div style="height:100%;width:100%"><img src="{{ asset('animal_image/<% animal.id %>/<% animal.file_name %>') }}" alt="<% animal.description %>" width="75" height="50"></div></a>
+                        <div  style="height:100%;width:100%"><img src="{{ asset('animal_image/<% animal.id %>/<% animal.file_name %>') }}" alt="<% animal.description %>" width="75" height="50"></div>
                         
                     </td>
-                    <td><a href="https://www.facebook.com"> <div style="height:100%;width:100%"><% animal.id %> </div></a></td>
-                    <td><a href="https://www.facebook.com"> <div style="height:100%;width:100%"><% animal.address %></div></a></td>
-                    <td><a href="https://www.facebook.com"> <div style="height:100%;width:100%"><% animal.status %></div></a></td>
-                    <td><a href="https://www.facebook.com"> <div style="height:100%;width:100%"><% animal.name %></div></a></td>
-                    <td><a href="https://www.facebook.com"> <div style="height:100%;width:100%"><% animal.created_at %></div></a></td>
-                    <td><a href="https://www.facebook.com"> <div style="height:100%;width:100%"><% animal.  updated_at %></div></a></td>
+                    <td> <div style="height:100%;width:100%"><% animal.id %> </div></td>
+                    <td> <div style="height:100%;width:100%"><% animal.address %></div></td>
+                    <td> <div style="height:100%;width:100%"><% animal.status %></div></td>
+                    <td> <div style="height:100%;width:100%"><% animal.name %></div></td>
+                    <td> <div style="height:100%;width:100%"><% animal.created_at %></div></td>
+                    <td> <div style="height:100%;width:100%"><% animal.  updated_at %></div></td>
                 </tr>
             </tbody>
         </table>

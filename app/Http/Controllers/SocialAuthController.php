@@ -37,6 +37,7 @@ class SocialAuthController extends Controller
 
         $authUser = $this->findOrCreateUser($user, $provider);
         Auth::login($authUser, true);
+
         return Redirect::to(Session::get('pre_url'));
     }
 
@@ -51,12 +52,20 @@ class SocialAuthController extends Controller
         if ($authUser) {
             return $authUser;
         }
+        else {
+            $authUser = User::where('email',$user->email)->first();
+            $authUser->provider = $provider;
+            $authUser->provider_id = $user->id;
+            $authUser->save();
 
-        return User::create([
-            'name'     => $user->name,
-            'email'    => $user->email,
-            'provider' => $provider,
-            'provider_id' => $user->id
-        ]);
+            return $authUser;
+        }
+        return Redirect::to('/home');
+        // return User::create([
+        //     'name'     => $user->name,
+        //     'email'    => $user->email,
+        //     'provider' => $provider,
+        //     'provider_id' => $user->id
+        // ]);
     }
 }
