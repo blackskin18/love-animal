@@ -17,7 +17,7 @@
                     </th>
                     <th ng-click="sort('status')">Tình trạng
                         <span class="glyphicon sort-icon" ng-show="sortKey=='status'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-                    </th> 
+                    </th>
                     <th ng-click="sort('name')"> Trường hợp
                         <span class="glyphicon sort-icon" ng-show="sortKey=='name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
                     </th> <th ng-click="sort('created_at')"> ngày nhận
@@ -30,8 +30,7 @@
             <tbody>
                 <tr dir-paginate="(key, animal) in animals|orderBy:sortKey:reverse|filter:search|itemsPerPage:15"  ng-click="showDetailAnimal(animal)" >
                     <td>
-                        <div  style="height:100%;width:100%"><img src="{{ asset('animal_image/<% animal.id %>/<% animal.file_name %>') }}" alt="<% animal.description %>" width="75" height="50"></div>
-                        
+                        <div ng-if="animal.file_name" style="height:100%;width:100%"><img src="{{ asset('animal_image/<% animal.id %>/<% animal.file_name %>') }}" alt="<% animal.description %>" width="75" height="50"></div>
                     </td>
                     <td> <div style="height:100%;width:100%"><% animal.id %> </div></td>
                     <td> <div style="height:100%;width:100%"><% animal.address %></div></td>

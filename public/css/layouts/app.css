@@ -35,7 +35,7 @@
         div.menu div.list-case{
             width: 100%;
             margin-top: 20px;
-            text-align: left ;
+            text-align: left;
         }
         div.menu div.list-case>span{
             height: 30px;
@@ -61,7 +61,7 @@
             background-color: #ffffff;
         }
         div.menu>div{
-            margin-left: 10px;
+            padding-left: 10px;
         }
         .container1{
             width: 85%;

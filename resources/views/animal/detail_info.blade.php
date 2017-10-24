@@ -20,11 +20,14 @@
 		        <div class="col-lg-4">
 		        	<div class="row">
 		        		@if (count($errors) > 0)
-					        <ul>
-					            @foreach ($errors->all() as $error)
-					                <li>{{ $error }}</li>
-					            @endforeach
-					        </ul>
+							<div class="alert alert-danger">
+					          	<h4> error!!! </h4>
+						        <ul>
+						            @foreach ($errors->all() as $error)
+						                <li>{{ $error }}</li>
+						            @endforeach
+						        </ul>
+						    </div>
 					    @endif
 		        		<form action="/animal/add_image" method="post"  enctype="multipart/form-data">
 							{{csrf_field()}}

@@ -26,9 +26,11 @@
     .navbar{
         margin: 0;
     }
-     div.menu{
+    div.menu{
             background-color: #E9EBEE;
             height: 600px;
+            width: 15%;
+            float: left;
         }
         div.menu div.list-case{
             width: 100%;
@@ -59,7 +61,7 @@
             background-color: #ffffff;
         }
         div.menu>div{
-            margin-left: 10px;
+            padding-left: 10px;
         }
         /* .container1{
             width: 85%;
