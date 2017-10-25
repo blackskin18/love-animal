@@ -47,7 +47,12 @@ class AnimalController extends Controller
         $animalFosters = AnimalFoster::where('animal_id', $animalId)->get();
         $userId = Auth::user()->id;
         $userRole = UserRole::where('user_info_id', $userId)->get();
-        return view('animal/detail_info')->with('animal', $animal)->with('images', $images)->with('all_status',$allStatus)->with('animal_fosters', $animalFosters)->with('user_level', $userRole[0]->role_info_id);
+
+        return view('animal/detail_info')   ->with('animal',           $animal)
+                                            ->with('images',            $images)
+                                            ->with('all_status',        $allStatus)
+                                            ->with('animal_fosters',    $animalFosters)
+                                            ->with('user_level',        $userRole[0]->role_info_id);
     }
 
 
