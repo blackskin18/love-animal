@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Hospital;
 use App\AnimalHospital;
 use App\AnimalImage;
+use App\UserRole;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class HospitalController extends Controller
 {
@@ -34,6 +36,8 @@ class HospitalController extends Controller
     public function detailHospital($hospitalId){
         $hospital = Hospital::find($hospitalId);
         $listRemove = [];
+        $userId = Auth::user()->id;
+        $userRole = UserRole::where('user_info_id', $userId)->get();
         $animalHospitals = AnimalHospital::orderBy('animal_id')->where('hospital_id', $hospitalId)->get();
         foreach ($animalHospitals as $key => $animalHospital) {
             $animalImage = AnimalImage::where('animal_id', $animalHospital->animal_id)->get();
@@ -50,7 +54,40 @@ class HospitalController extends Controller
             }
         }
 
-        return view('hospital/detail_info')->with('animal_hospitals', $animalHospitals)->with('hospital', $hospital);
+        return view('hospital/detail_info')->with('animal_hospitals', $animalHospitals)->with('hospital', $hospital)->with('user_level', $userRole[0]->role_info_id);
     }
+
+    public function editPhone($hospitalId, Request $request)
+    {   
+        $hospital = Hospital::find($hospitalId);
+        $hospital->phone = $request->data;
+        $hospital->save();
+        return $hospital->phone;
+    }
+
+    public function editNote($hospitalId, Request $request)
+    {
+        $hospital = Hospital::find($hospitalId);
+        $hospital->note = $request->data;
+        $hospital->save();
+        return $hospital->note;        
+    }
+
+    public function editAddress($hospitalId, Request $request)
+    {
+        $hospital = Hospital::find($hospitalId);
+        $hospital->address = $request->data;
+        $hospital->save();
+        return $hospital->address;
+    }
+
+    public function editName(Request $request, $hospitalId)
+    {
+        $hospital = Hospital::find($hospitalId);
+        $hospital->name = $request->data;
+        $hospital->save();
+        return $hospital->name;
+    }
+
 
 }

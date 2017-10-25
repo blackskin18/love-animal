@@ -58,7 +58,11 @@ route::post('/animal_image/change/{imageId}', 'AnimalController@changeImage');
 
 route::get('/hospital/list', 'HospitalController@getListHospital');
 route::get('/api/get_list_hospital' , 'HospitalController@postListHospital');
-route::get('hospital/detail_info/{hospitalId}', 'HospitalController@detailHospital');
+route::get('/hospital/detail_info/{hospitalId}', 'HospitalController@detailHospital');
+route::post('/hospital/edit/edit-phone/{hospitalId}', 'HospitalController@editPhone');
+route::post('/hospital/edit/edit-note/{hospitalId}', 'HospitalController@editNote');
+route::post('/hospital/edit/edit-address/{hospitalId}', 'HospitalController@editAddress');
+route::post('/hospital/edit/edit-name/{hospitalId}', 'HospitalController@editName');
 
 
 route::get('/volunteer/list', 'VolunteerController@getListVolunteer');
