@@ -12,9 +12,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('link-css')
     <link href="{{ asset('css/layouts/app_no_search.css') }}" rel="stylesheet">
     <script src="{{ asset('js/jquery-3.2.1.js') }}"></script>
-    @yield('link-css')
     @yield('link-js')
 </head>
 <body>
@@ -59,6 +59,11 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="/volunteer/info/{{Auth::user()->id}}">
+                                            Trang Cá Nhân
+                                        </a>
+                                    </li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

@@ -64,10 +64,15 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+                                        <a href="/volunteer/info/{{Auth::user()->id}}">
+                                            Trang Cá Nhân
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            Đăng Xuất
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

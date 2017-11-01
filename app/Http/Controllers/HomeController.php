@@ -118,7 +118,7 @@ class HomeController extends Controller
 
     public function getListImageAnimal(){
         // $images = $this->postListAllAnimal();
-        $images = AnimalImage::orderBy('animal_id', 'desc')->get();
+        $images = AnimalImage::orderBy('animal_id', 'desc')->take(70)->get();
         foreach ($images as $key => $image) {
             if($key != 0 && $images[$key-1]->animal_id == $images[$key]->animal_id ){
                 $a[] = $key;
@@ -129,8 +129,27 @@ class HomeController extends Controller
                 unset($images[$b]);
             }
         }
-        // return $images;
-        return view('animal/list_image_all_animal')->with('images', $images);
+
+        $sumImage = AnimalImage::orderBy('animal_id', 'desc')->take(1)->get();
+        // return $sumImage;
+        return view('animal/list_image_all_animal')->with('images', $images )->with('sum_image', $sumImage[0]->id);
+    }
+
+    public function getMoreToLisstAllImage($animalId)
+    {
+        $images = AnimalImage::orderBy('animal_id', 'desc')->where('animal_id', '<', $animalId )->take(70)->get();
+        foreach ($images as $key => $image) {
+            if($key != 0 && $images[$key-1]->animal_id == $images[$key]->animal_id ){
+                $a[] = $key;
+            }
+        }
+        if(isset($a)){
+            foreach ($a as $key => $b) {
+                unset($images[$b]);
+            }
+        }
+
+        return $images;
     }
 
 }
