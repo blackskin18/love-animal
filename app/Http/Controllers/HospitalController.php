@@ -54,7 +54,9 @@ class HospitalController extends Controller
             }
         }
 
-        return view('hospital/detail_info')->with('animal_hospitals', $animalHospitals)->with('hospital', $hospital)->with('user_level', $userRole[0]->role_info_id);
+        $sumImage = AnimalImage::orderBy('animal_id', 'desc')->take(1)->get();
+
+        return view('hospital/detail_info')->with('images', $animalHospitals)->with('hospital', $hospital)->with('user_level', $userRole[0]->role_info_id)->with('sum_image', $sumImage[0]->id);
     }
 
     public function editPhone($hospitalId, Request $request)
@@ -88,6 +90,5 @@ class HospitalController extends Controller
         $hospital->save();
         return $hospital->name;
     }
-
 
 }

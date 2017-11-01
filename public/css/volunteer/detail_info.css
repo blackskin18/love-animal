@@ -67,6 +67,8 @@ div.avatar-box{
         top: 0;
         left: 31%;
         float: right;
+        z-index: 2;
+        background-color: #F5F8FA;
     }
     div.log-box>div.log-content{
         width: 100%;
@@ -78,15 +80,15 @@ div.avatar-box{
     div.button-show-log{
         position: absolute;
         width: 200px;
-        top: 260px;
-        left: 200px;
+        top: 200px;
+        left: 15px;
     }
-    div.button-show-log>button:first-of-type{
+    div.button-show-log>button#button-show-log{
         /* margin: auto; */
         margin-left: 65px;
         margin-bottom: 10px;
     }
-    div.button-show-log>button:last-of-type{
+    div.button-show-log>button#button-show-edit{
         /* margin: auto; */
         margin-left: 20px;
     }
@@ -107,7 +109,6 @@ div.avatar-box{
     div.edit-info-box table>tbody>tr>td:nth-of-type(2){
         width: 450px;
     }
-
 
     input.form-edit{
         width: 250px;

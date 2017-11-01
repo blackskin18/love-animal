@@ -16,18 +16,24 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('/test', 'AnimalController@test');
+
+Route::get('/auth/{provider}', 'SocialAuthController@redirectToProvider');
+Route::get('/auth/{provide}/callback', 'SocialAuthController@handleProviderCallback');
+
+
 Route::get('/admin/create_user', 'adminController@getCreateUser')->middleware('system_admin');
 Route::get('/admin/post/create_user', 'adminController@postCreateUser')->middleware('system_admin');
 
 Route::get('/admin/create_case','adminController@getCreateCase')->middleware('system_admin');
 Route::post('/admin/post/create_case','adminController@postCreateCase')->middleware('system_admin');
 
-Route::get('/auth/{provider}', 'SocialAuthController@redirectToProvider');
-Route::get('/auth/{provide}/callback', 'SocialAuthController@handleProviderCallback');
-
-Route::get('/test', 'AnimalController@test');
 
 route::get('/animal/list_image/all','HomeController@getListImageAnimal');
+route::get('/animal/list_image/loadmore/{animalId}','HomeController@getMoreToLisstAllImage');
+route::get('/animal/summary_detail/{animalId}', 'AnimalController@getSummaryDetail');
+
+
 Route::get('/home', 'HomeController@index')->name('home');
 route::get('post-list-pet','HomeController@postListAllAnimal');
 route::get('/animal/list-in-common-home', 'HomeController@getListInCommonHome');
@@ -69,6 +75,9 @@ route::get('/volunteer/list', 'VolunteerController@getListVolunteer');
 route::get('/api/get_list_volunteer' , 'VolunteerController@postListVolunteer');
 route::get('volunteer/info/{user_id}', 'VolunteerController@volunteerInfo');
 route::post('volunteer/edit_info/{user_id}', 'VolunteerController@editInfo');
+route::post('volunteer/change-avatar/{userId}', 'VolunteerController@changeAvatar');
 
 
 route::get('/api/get_all_status', 'StatusController@getAllStatus');
+
+// route::get('/api/loadmore-image-in-hospital/{hospitalId}/{animalId}','HospitalController@getMoreImage');

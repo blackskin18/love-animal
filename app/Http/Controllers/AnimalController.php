@@ -151,4 +151,16 @@ class AnimalController extends Controller
         return "true";
     }
 
+    public function getSummaryDetail($animalId){
+
+        $animal = Animal::find($animalId);
+        $statuses = Status::all();
+        foreach ($statuses as $key => $status) {
+            if($status->id == $animal->status){
+                $animal->status = $status->name;
+            }
+        }
+        return $animal;
+    }
+
 }
