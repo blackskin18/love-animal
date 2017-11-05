@@ -18,6 +18,8 @@ $(function () {
     createFormEditOneAttribute('btn-edit-type');
     createFormEditOneAttribute('btn-edit-age');
     createFormEditOneAttribute('btn-edit-description');
+    createFormEditOneAttribute('btn-edit-place');
+    createFormEditOneAttribute('btn-edit-note');
 
     var sumImage = $('input#sum-image').val();
 
@@ -102,6 +104,7 @@ function createButtonEdit(buttonId, oldValue){
                 url: url,
                 type: "get",
                 datatType: "json",
+                async: false,
                 buttonId: buttonId,
                 success: function(data){
                     console.log(data);
@@ -119,12 +122,25 @@ function createButtonEdit(buttonId, oldValue){
                     `);
                 },
                 error: function(data) {
-                    alert('error');
+                    alert('error1');
                 }
             });
+        } else if(buttonId == 'btn-edit-place') {
+             $('button#'+buttonId).parent().siblings().html(`
+                <select class="form-control" id="sel1">
+                    <option value="Khác"> Khác </option>
+                    <option value="Nhà Chung">Nhà Chung</option>
+                    <option value="Nhà TNV">nhà TNV</option>
+                    <option value="Bệnh Viện">Bệnh Viện</option>
+                </select>
+
+                <button class="btn btn-primary" id="${buttonId+'-submit'}">
+                    gửi
+                </button>
+            `);
         } else {
             $('button#'+buttonId).parent().siblings().html(`
-            <input type="text" class="form-control" value="`+oldValue.trim()+`"/>
+            <textarea name="" id="" cols=60" rows="3">`+oldValue.trim()+`</textarea>
             <button class="btn btn-primary" id="${buttonId+'-submit'}">
                 gửi
             </button>

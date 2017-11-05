@@ -69,7 +69,44 @@
 		        		<button class="btn btn-primary" id="btn-show-history">nhật ký thay đổi</button>
 		        	</div>
 		        	<div class="history-box">
-		        		
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>Ngày thay đổi</th>
+									<th>Người Dùng</th>
+									<th>Ghi Chú</th>
+									<th>Trước khi thay Đổi</th>
+									<th>Sau khi thay đổi</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach($histories as $key => $history)
+								<tr>
+									<td>{{$history->created_at}}</td>
+									<td>
+										<a href="{{ '/volunteer/info/'.$history->user_id }}">
+											{{$history->user->name}}
+										</a>
+									</td>
+									<td>{{$history->note}}</td>
+									<td>
+										@if($history->attribute == 'image')
+											<img src="{{ asset('animal_image/'.$history->animal_id.'/'.$history->old_value) }}" width="75" height="50" alt="">
+										@else
+											{{$history->old_value}}
+										@endif
+									</td>
+									<td>
+										@if($history->attribute == 'image')
+											<img src="{{ asset('animal_image/'.$history->animal_id.'/'.$history->new_value) }}" width="75" height="50" alt="">
+										@else
+											{{$history->new_value}}
+										@endif
+									</td>
+								</tr>
+								@endforeach
+							</tbody>
+						</table>
 		        	</div>
 		        	<div class="info-box">
 						<table class="table">
@@ -125,6 +162,28 @@
 								</tr>
 								<tr>
 									<td>Địa điểm</td>
+									<td>
+										<div class="row">
+											<div class="col-lg-9">
+												<p>
+													{{$animal->place}}
+												</p>
+											</div>
+											<div class="col-lg-3 text-right">
+												@if($user_level == 1 || $user_level == 2 || $user_level == 3 )
+													<button class="btn btn-primary btn-edit" id="btn-edit-place">
+														edit
+													</button>
+													<button class="btn btn-primary " id="btn-edit-place-cancel" style="display: none">
+														hủy
+													</button>
+												@endif
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>Địa chỉ</td>
 									<td>
 										<div class="row">
 											<div class="col-lg-9">
@@ -232,11 +291,23 @@
 									</td>
 								</tr>
 								<tr>
-									<td>nhật ký điều trị</td>
+									<td>Ghi Chú</td>
 									<td>
-										@foreach($animal_fosters as $animal_foster)
-											{{$animal_foster->note}} <br>
-										@endforeach
+										<div class="row">
+											<div class="col-lg-9">
+												<p>
+													{{$animal->note}}
+												</p>
+											</div>
+											<div class="col-lg-3 text-right">
+												<button class="btn btn-primary btn-edit" id="btn-edit-note">
+													edit
+												</button>
+												<button class="btn btn-primary " id="btn-edit-note-cancel" style="display: none">
+													hủy
+												</button>
+											</div>
+										</div>
 									</td>
 								</tr>
 								

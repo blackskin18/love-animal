@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
     @yield('link-css')
     <link href="{{ asset('css/layouts/app_no_search.css') }}" rel="stylesheet">
     <script src="{{ asset('js/jquery-3.2.1.js') }}"></script>

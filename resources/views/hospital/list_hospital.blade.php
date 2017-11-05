@@ -1,7 +1,7 @@
 @extends('layouts.index')
 @section('content')
     <div >
-    <div class="container" ng-controller="listData" style="margin-top: 15px;">
+    <div class="container" id="table-list-hostpital" ng-controller="listData" style="display: none; margin-top: 15px;">
         <table class="table table-bordered table-hover" ng-app>
             <thead>
                <tr>
@@ -59,6 +59,9 @@
                 $scope.sortKey = keyname;   //set the sortKey to the param passed
                 $scope.reverse = !$scope.reverse; //if true make it false and vice versa
             }
+        });
+        $(function(){
+            $('div#table-list-hostpital').css('display', 'block');
         });
     </script>
 @endsection

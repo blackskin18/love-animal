@@ -12,7 +12,10 @@
                     <th ng-click="sort('id')">Id
                         <span class="glyphicon sort-icon" ng-show="sortKey=='id'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
                     </th>
-                    <th ng-click="sort('address')">địa điểm
+                    <th ng-click="sort('place')">Địa điểm
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='place'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('address')">Địa chỉ
                         <span class="glyphicon sort-icon" ng-show="sortKey=='address'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
                     </th>
                     <th ng-click="sort('status')">Tình trạng
@@ -33,6 +36,7 @@
                         <div ng-if="animal.file_name" style="height:100%;width:100%"><img src="{{ asset('animal_image/<% animal.id %>/<% animal.file_name %>') }}" alt="<% animal.description %>" width="75" height="50"></div>
                     </td>
                     <td> <div style="height:100%;width:100%"><% animal.id %> </div></td>
+                    <td> <div style="height:100%;width:100%"><% animal.place %></div></td>
                     <td> <div style="height:100%;width:100%"><% animal.address %></div></td>
                     <td> <div style="height:100%;width:100%"><% animal.status %></div></td>
                     <td> <div style="height:100%;width:100%"><% animal.name %></div></td>

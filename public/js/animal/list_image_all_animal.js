@@ -55,9 +55,6 @@ $(function(){
 			url = window.location.origin + "/animal/summary_detail/" + animalId;
 			$('div#image_' + i).popModal({
 				html : sendAjax(url),
-				// html: function(){
-				// 	return "abc";
-				// },
 				placement : 'leftTop',
 				showCloseBut : true,
 				onOkBut : function(){ },

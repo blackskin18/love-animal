@@ -22,9 +22,8 @@ class HomeController extends Controller
     public function getList($attribute, $value)
     {
         $animals = DB::table('animals')
-                    ->join('animal_images', 'animals.id', '=', 'animal_images.animal_id')
-                    ->join('animal_status_histories', 'animals.id', '=', 'animal_status_histories.animal_id')
-                    ->join('statuses', 'animal_status_histories.status_id', 'statuses.id', '=')
+                    ->leftJoin('animal_images', 'animals.id', '=', 'animal_images.animal_id')
+                    ->leftJoin('statuses', 'animals.status', 'statuses.id', '=')
                     ->select('animals.*', 'animal_images.file_name', 'statuses.name as status'  )
                     ->where($attribute, $value)
                     ->get();
@@ -81,7 +80,7 @@ class HomeController extends Controller
 
     public function postListInCommonHome()
     {
-        $animals = $this->getList('animals.address','nhà chung');
+        $animals = $this->getList('animals.place','Nhà Chung');
         return $animals;
     }
 

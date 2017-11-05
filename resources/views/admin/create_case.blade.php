@@ -50,6 +50,18 @@
 			  	<div class="form-group">
 			    	<label class="control-label col-sm-2" for="email">Địa điểm</label>
 		    		<div class="col-sm-10">
+		      		 	<select class="form-control" name ="place" id="sel1">
+							<option value="">-------chọn một-----</option>
+		                    <option value="Khác"> Khác </option>
+		                    <option value="Nhà Chung">Nhà Chung</option>
+		                    <option value="Nhà TNV">nhà TNV</option>
+		                    <option value="Bệnh Viện">Bệnh Viện</option>
+		                </select>
+			    	</div>
+			  	</div>
+			  	<div class="form-group">
+			    	<label class="control-label col-sm-2" for="email">Địa chỉ</label>
+		    		<div class="col-sm-10">
 			      		<input type="text" name="address" class="form-control" placeholder="nhập email">
 			    	</div>
 			  	</div>
@@ -69,7 +81,7 @@
 			    	<label class="control-label col-sm-2" for="email">Trạng thái</label>
 			    	<div class="col-sm-10">
 			    		<select name="status" class="form-control">
-							<option value="">-------chọn kiểu người dùng-----</option>
+							<option value="">-------chọn một-----</option>
 							@foreach($statuses as $status)
 								<option value="{{$status->id}}">{{$status->name}}</option>
 							@endforeach

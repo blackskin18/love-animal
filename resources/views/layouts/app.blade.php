@@ -9,14 +9,16 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
     <!-- Styles -->
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/popModal.css') }}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/layouts/app.css') }}" rel="stylesheet">
     <script src="{{ asset('js/jquery-3.2.1.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
     <script src="{{ asset('js/pagination/dirPagination.js') }}"></script>
+    <script src="{{ asset('js/popModal.js') }}"></script>
+    <script src="{{ asset('js/layouts/app.js') }}"></script>
     @yield('link-css')
     @yield('link-js')
 
@@ -45,7 +47,7 @@
                     <!-- Left Side Of Navbar -->
                     <div class="navbar-nav" style="width: 70%; height: 50px;">
                         <div style="display: inline-block; height: 100%; margin: auto; margin-left: 40%;" >
-                            <button class="btn btn-info"><span class="glyphicon glyphicon-envelope"></span></button>
+                            <button class="btn btn-info" id="btn-show-history"><span class="glyphicon glyphicon-envelope"></span></button>
                             <input type="text" ng-model="search" placeholder="Search">
                         </div>
                     </div>
