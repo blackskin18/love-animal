@@ -1,5 +1,9 @@
 
 $(function(){
+	var test = $('img.animal_image').width();
+	$('img.animal_image').css('height', test);
+	// console.log(test);
+
 	var sumImage = $('input#sum_image').val();
 	function sendAjax (url){
         $.ajaxSetup({
@@ -96,10 +100,10 @@ $(function(){
 		            		`;
 		            		if(data[index].file_name){
 		            			content += `<img src="${window.location.origin + "/animal_image/"+ data[index].animal_id + "/" + data[index].file_name }" 
-		            			alt="ảnh ca ${data[index].animal_id}" width="100%" height="100px" >`
+		            			alt="ảnh ca ${data[index].animal_id}" width="100%" class ="animal_image" height="130px" >`
 		            		} else{
 		            			content += `<img src="${window.location.origin + "/animal_image/default_image/default.jpg"}"
-		            			alt="ảnh ca ${data[index].animal_id}" width="100%" height="100px" >`;
+		            			alt="ảnh ca ${data[index].animal_id}" width="100%" class ="animal_image" height="130px" >`;
 		            		}
 		            		content += `</div>
 								<div class="text-center">
@@ -134,6 +138,8 @@ $(function(){
 		            error: function(data) {
 		            }
 		        });
+	    	var test = $('img.animal_image').width();
+			$('img.animal_image').css('height', test);
 		}
 	});
 })
