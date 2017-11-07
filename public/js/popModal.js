@@ -112,7 +112,7 @@ $(function() {
 					}
 
 					if (tooltipContent[0].scrollWidth > tooltipContent[0].offsetWidth && _options.size == '') {
-						tooltipContainer.css({maxWidth: '400px'});
+						tooltipContainer.css({maxWidth: '800px'});
 						tooltipContent.addClass(elemClass + '_contentOverflow');
 					}
 					if ($.isPlainObject(_options.size) || (/^{/i).test(_options.size)) {

@@ -70,6 +70,7 @@ class adminController extends Controller
         $animal = new Animal();
         $animal->name = $request->name;
         $animal->status = $request->status;
+        $animal->place = $request->place;
         $animal->created_by = Auth::user()->id;
         if($request->description){
             $animal->description = $request->description;
@@ -94,8 +95,7 @@ class adminController extends Controller
             foreach ($request->photos as $photo) {
                 $filename = $photo->store('');
                 $file = $photo;
-                $file->move(public_path().'/animal_image/'.$request->animal_id, $filename);
-                
+                $file->move(public_path().'/animal_image/'.$animal->id, $filename);
                 $animalImage = new AnimalImage;
                 $animalImage->animal_id = $animal->id;
                 $animalImage->created_by = Auth::user()->id;
@@ -103,6 +103,9 @@ class adminController extends Controller
                 $animalImage->save();
             }
         }
+
+        $history = new HistoryController;
+        $history->saveLog(Auth::User()->id, $animal->id, null , null, null, 'Tạo mới 1 case');
 
         return Redirect::to('/animal/detail_info/'.$animal->id);
     }

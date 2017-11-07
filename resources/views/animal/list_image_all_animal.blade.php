@@ -24,9 +24,9 @@
 					<div id="image_{{$image->id}}">
 						<input type="hidden" disabled value="{{$image->animal_id}}">			
 						@if($image->file_name)
-							<img src="{{ asset('animal_image/'.$image->animal_id.'/'.$image->file_name) }}" alt="	ảnh ca {{$image->animal_id}}" width="100%" height="100px" >
+							<img src="{{ asset('animal_image/'.$image->animal_id.'/'.$image->file_name) }}" alt="ảnh ca {{$image->animal_id}}" width="100%" height ="130px" class="animal_image" >
 						@else
-							<img src="{{ asset('animal_image/default_image/default.jpg') }}" alt="	ảnh ca {{$image->animal_id}}" width="100%" height="100px" >
+							<img src="{{ asset('animal_image/default_image/default.jpg') }}" alt="	ảnh ca {{$image->animal_id}}" width="100%" height="130px" class="animal_image" >
 						@endif
 					</div>
 					<div class="text-center">

@@ -16,7 +16,6 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::get('/test', 'AnimalController@test');
 
 Route::get('/auth/{provider}', 'SocialAuthController@redirectToProvider');
 Route::get('/auth/{provide}/callback', 'SocialAuthController@handleProviderCallback');
@@ -56,6 +55,11 @@ route::post('/animal/edit/edit-create-at/{animal_id}', 'AnimalController@editCre
 route::post('/animal/edit/edit-address/{animal_id}', 'AnimalController@editAddress')->middleware('system_admin');
 route::post('/animal/edit/edit-name/{animal_id}', 'AnimalController@editName')->middleware('system_admin');
 route::post('/animal/edit/edit-type/{animal_id}', 'AnimalController@editType')->middleware('system_admin');
+route::post('/animal/edit/edit-status/{animal_id}', 'AnimalController@editStatus')->middleware('system_admin');
+route::post('/animal/edit/edit-place/{animal_id}', 'AnimalController@editPlace')->middleware('system_admin');
+
+
+
 route::post('/animal/edit/edit-description/{animal_id}', 'AnimalController@editDescription')->middleware('system_admin');
 
 route::get('/animal_image/delete/{imageId}', 'AnimalController@deleteImage');
@@ -78,6 +82,12 @@ route::post('volunteer/edit_info/{user_id}', 'VolunteerController@editInfo');
 route::post('volunteer/change-avatar/{userId}', 'VolunteerController@changeAvatar');
 
 
-route::get('/api/get_all_status', 'StatusController@getAllStatus');
+route::get('/api/get_all_status', 'AnimalController@getAllStatus');
+
+
+route::get('/histories', 'HistoryController@getViewListHistory');
+route::get('/api/get_data/histories', 'HistoryController@apigetDataHistory');
+route::get('/api/get_data/histories/today', 'HistoryController@apigetDataHistoryInToday');
+
 
 // route::get('/api/loadmore-image-in-hospital/{hospitalId}/{animalId}','HospitalController@getMoreImage');

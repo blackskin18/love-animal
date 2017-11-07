@@ -13,10 +13,19 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/layouts/app.css') }}" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/popModal.css') }}">
+    
+
     <script src="{{ asset('js/jquery-3.2.1.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
     <script src="{{ asset('js/pagination/dirPagination.js') }}"></script>
+    <script src="{{ asset('js/popModal.js') }}"></script>
+    
+    <script src="{{ asset('js/layouts/app.js') }}"></script>
+
+
+
     @yield('link-css')
     @yield('link-js')
 
@@ -24,7 +33,7 @@
 <body ng-app="pagination">
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
+            <div class="container" style="margin-left: 80px; width: 1050px; display: inline-block;">
                 <div class="navbar-header" style="display: inline-block;">
 
                     <!-- Collapsed Hamburger -->
@@ -36,55 +45,58 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app  .name', 'Love-pet') }}
+                    <a class="navbar-brand" href="{{ url('/') }}" style="padding: 0;">
+                        <img src="{{ asset('logo/logo_page.jpg') }}" height="50px"  style="" alt="">
+                        <!-- {{ config('app  .name', 'Love-pet') }} -->
                     </a>
                 </div>
                 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse" style="display: inline-block;">
                     <!-- Left Side Of Navbar -->
-                    <div class="navbar-nav" style="width: 70%; height: 50px;">
+                    <div class="navbar-nav" style="width: 70%; height: 50px; margin-left: 10%">
                         <div style="display: inline-block; height: 100%; margin: auto; margin-left: 40%;" >
-                            <button class="btn btn-info"><span class="glyphicon glyphicon-envelope"></span></button>
+                            <!-- <button class="btn btn-info"><span class="glyphicon glyphicon-envelope"></span></button> -->
+                            <button id="btn-show-today-history"><img src="{{ asset('logo/Notify2.jpg') }}" style="background-size: cover;" width="35px" height="35px" alt=""></button>
                             <input type="text" ng-model="search" placeholder="Search">
                         </div>
                     </div>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="/volunteer/info/{{Auth::user()->id}}">
-                                            Trang Cá Nhân
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Đăng Xuất
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
                 </div>
             </div>
+            <ul class="nav navbar-nav navbar-right" style="display: inline-block; margin:5px 15px 0 0;  height:40px; ;border-radius: 10%; border: 2px solid #E9ECEE">
+                <!-- Authentication Links -->
+                @if (Auth::guest())
+                    <li><a href="{{ route('login') }}">Login</a></li>
+                    <li><a href="{{ route('register') }}">Register</a></li>
+                @else
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="color: rgba(240, 104, 34, 1); padding: 8px 15px 0px 15px;">
+                            <b>{{ Auth::user()->name }} </b><span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="/volunteer/info/{{Auth::user()->id}}">
+                                    Trang Cá Nhân
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                    Đăng Xuất
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
+            </ul>
+
         </nav>
 
         @yield('index')

@@ -1,20 +1,20 @@
 @extends('layouts.index')
 @section('content')
     <div >
-    <div class="container" ng-controller="listData" style="margin-top: 15px;">
+    <div class="" id="table-list-hostpital" ng-controller="listData" style="display: none; margin-top: 15px;">
         <table class="table table-bordered table-hover" ng-app>
             <thead>
                <tr>
-                    <th ng-click="sort('id')" width="25%">Tên
+                    <th ng-click="sort('id')" >Tên
                         <span class="glyphicon sort-icon" ng-show="sortKey=='id'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}" ></span>
                     </th>
-                    <th ng-click="sort('address')" width="25%"> Số điện thoại
+                    <th ng-click="sort('address')" > Số điện thoại
                         <span class="glyphicon sort-icon" ng-show="sortKey=='address'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
                     </th>
-                    <th ng-click="sort('status')" width="25%">Địa chỉ
+                    <th ng-click="sort('status')" >Địa chỉ
                         <span class="glyphicon sort-icon" ng-show="sortKey=='status'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
                     </th> 
-                    <th ng-click="sort('name')" width="25%"> Ghi chú
+                    <th ng-click="sort('name')" > Ghi chú
                         <span class="glyphicon sort-icon" ng-show="sortKey=='name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
                     </th> 
                 </tr>
@@ -59,6 +59,9 @@
                 $scope.sortKey = keyname;   //set the sortKey to the param passed
                 $scope.reverse = !$scope.reverse; //if true make it false and vice versa
             }
+        });
+        $(function(){
+            $('div#table-list-hostpital').css('display', 'block');
         });
     </script>
 @endsection
