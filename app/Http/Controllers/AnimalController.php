@@ -41,9 +41,31 @@ class AnimalController extends Controller
         $animalFosters = AnimalFoster::where('animal_id', $animalId)->get();
         $userId = Auth::user()->id;
         $userRole = UserRole::where('user_info_id', $userId)->get();
+        
         $histories = History::where('animal_id', $animalId)->orderBy('created_at','desc')->get();
         foreach ($histories as $key => $value) {
             $histories[$key]->user;
+            if($histories[$key]->attribute == 'place'){
+                if($histories[$key]->old_value && $histories[$key]->old_value == 'hospital'){
+                    $place = AnimalHospital::where('animal_id', $histories[$key]->animal_id)->orderBy('created_at', 'desc')->take(1)->get();
+                    $place[0]->hospital;
+                    $histories[$key]['old_value_place'] =  $place[0];
+                } elseif($histories[$key]->old_value == 'volunteer'){
+                    $place = AnimalFoster::where('animal_id', $histories[$key]->animal_id)->orderBy('created_at', 'desc')->take(1)->get();
+                    $place[0]->foster;
+                    $histories[$key]['old_value_place'] =  $place[0];
+                }
+
+                if($histories[$key]->new_value && $histories[$key]->new_value == 'hospital'){
+                    $place = AnimalHospital::where('animal_id', $histories[$key]->animal_id)->orderBy('created_at', 'desc')->take(1)->get();
+                    $place[0]->hospital;
+                    $histories[$key]['new_value_place'] =  $place[0];
+                } elseif($histories[$key]->new_value == 'volunteer'){
+                    $place = AnimalFoster::where('animal_id', $histories[$key]->animal_id)->orderBy('created_at', 'desc')->take(1)->get();
+                    $place[0]->foster;
+                    $histories[$key]['new_value_place'] =  $place[0];
+                }
+            }
         }
 
         $placeResult = null;
@@ -54,7 +76,9 @@ class AnimalController extends Controller
             $place = AnimalFoster::where('animal_id', $animalId)->orderBy('created_at', 'desc')->take(1)->get();
             $placeResult = [$place[0]->foster, $place[0] ];
         }
-        return view('animal/detail_info')   ->with('animal',           $animal)
+
+
+        return view('animal/detail_info')   ->with('animal',            $animal)
                                             ->with('images',            $images)
                                             ->with('histories',         $histories)
                                             ->with('all_status',        $allStatus)
@@ -168,7 +192,7 @@ class AnimalController extends Controller
         }
         elseif ($request->data == 'volunteer'){
             $history = new HistoryController;
-            $history->saveLog(Auth::User()->id, $animalId, 'name', $animal->place, $request->data, 'Sửa địa điểm');
+            $history->saveLog(Auth::User()->id, $animalId, 'place', $animal->place, $request->data, 'Sửa địa điểm');
 
             $animal->place = $request->data;
             $animal->save();

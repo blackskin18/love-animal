@@ -3,7 +3,7 @@
 @endsection
 @section('content')
     <div >
-    <div class="container" id="table-list-history" ng-controller="listData" style="display: none; margin-top: 15px;">
+    <div class="" id="table-list-history" ng-controller="listData" style="display: none; margin-top: 15px;">
         <table class="table table-bordered table-hover" ng-app>
             <thead>
                <tr>
@@ -55,12 +55,14 @@
                             <p ng-if="history.old_value == 'volunteer'"> nhà TNV: 
                                 <a href="/volunteer/info/<% history.old_value_place.foster.id %>">
                                     <% history.old_value_place.foster.name %>
-                                </a>
+                                </a> <br>
+                                <% history.old_value_place.note %>
                             </p>
                             <p ng-if="history.old_value == 'hospital'"> Bệnh Viện:
                                 <a href="/hospital/detail_info/<% history.old_value_place.hospital.id %>">
                                     <% history.old_value_place.hospital.name %>
-                                </a>
+                                </a> <br>
+                                <% history.old_value_place.note %>
                              </p>
                             <p ng-if="history.old_value == 'commonHome'"> Nhà Chung </p>
                             <p ng-if="history.old_value != 'hospital' &&  history.old_value != 'volunteer' && history.old_value != 'commonHome' "> <% history.old_value %></p>
@@ -75,13 +77,15 @@
                         <div ng-if="history.attribute == 'place'"  style="height:100%;width:100%">
                             <p ng-if="history.new_value == 'volunteer'"> nhà TNV: 
                                 <a href="/volunteer/info/<% history.new_value_place.foster.id %>">
-                                    <% history.new_value_place.foster.name %>
-                                </a>
+                                    <% history.new_value_place.foster.name %> 
+                                </a><br>
+                                    <% history.new_value_place.note %>
                             </p>
                             <p ng-if="history.new_value == 'hospital'"> Bệnh Viện:
                                 <a href="/hospital/detail_info/<% history.new_value_place.hospital.id %>">
-                                    <% history.new_value_place.hospital.name %>
-                                </a>
+                                    <% history.new_value_place.hospital.name %> 
+                                </a><br>
+                                <% history.new_value_place.note %>
                             </p>
                             <p ng-if="history.new_value == 'commonHome'"> Nhà Chung </p>
                             <p ng-if="history.new_value != 'hospital' &&  history.new_value != 'volunteer' && history.new_value != 'commonHome' "> <% history.new_value %></p>

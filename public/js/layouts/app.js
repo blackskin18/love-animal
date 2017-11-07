@@ -50,14 +50,54 @@ $(function () {
 						htmlAppend += `</td>
 						<td>`;
 						if(histories[i].attribute == 'image'){
-							htmlAppend += `<img src="{{ asset('animal_image/'.$history->animal_id.'/'.$history->old_value) }}" width="75" height="50" alt="">`;
+							htmlAppend += `<img src="animal_image/${histories[i].animal_id}/${histories[i].old_value}" width="75" height="50" alt="">`;
+						} else if (histories[i].attribute == 'place'){
+							if(histories[i].old_value == 'volunteer'){
+								htmlAppend += `<p> nhà TNV: 
+					                                <a href="/volunteer/info/${histories[i].old_value_place.foster.id}">
+					                                    ${histories[i].old_value_place.foster.name}
+					                                </a> <br />
+					                                ${histories[i].old_value_place.note}
+					                            </p>`;
+							} else if(histories[i].old_value == 'hospital'){
+								htmlAppend += `<p> Bệnh Viện: 
+					                                <a href="/volunteer/info/${histories[i].old_value_place.hospital.id}">
+					                                    ${histories[i].old_value_place.hospital.name}
+					                                </a> <br />
+					                                	${histories[i].old_value_place.note}
+					                            </p>`;
+							} else if(histories[i].old_value == 'commonHome'){
+								htmlAppend += `<p>Nhà Chung</p>`
+							} else {
+								htmlAppend += histories[i].old_value;
+							}
 						} else {
 							htmlAppend += histories[i].old_value;
 						}
 			htmlAppend +=`</td>
 						<td>`;
 						if(histories[i].attribute == 'image'){
-							htmlAppend += `<img src="{{ asset('animal_image/'.$history->animal_id.'/'.$history->new_value) }}" width="75" height="50" alt="">`;
+							htmlAppend += `<img src="animal_image/${histories[i].animal_id}/${histories[i].new_value}" width="75" height="50" alt="">`;
+						} else if (histories[i].attribute == 'place'){
+							if(histories[i].new_value == 'volunteer'){
+								htmlAppend += `<p> nhà TNV: 
+					                                <a href="/volunteer/info/${histories[i].new_value_place.foster.id}">
+					                                    ${histories[i].new_value_place.foster.name}
+					                                </a> <br/>
+					                                	${histories[i].new_value_place.note}
+					                            </p>`;
+							} else if(histories[i].new_value == 'hospital'){
+								htmlAppend += `<p> Bệnh Viện: 
+					                                <a href="/volunteer/info/${histories[i].new_value_place.hospital.id}">
+					                                    ${histories[i].new_value_place.hospital.name}
+					                                </a> <br />
+					                                	${histories[i].new_value_place.note}
+					                            </p>`;
+							} else if(histories[i].new_value == 'commonHome'){
+								htmlAppend += `<p>Nhà Chung</p>`
+							} else {
+								htmlAppend += histories[i].new_value;
+							}
 						} else {
 							htmlAppend += histories[i].new_value;
 						}
@@ -72,8 +112,8 @@ $(function () {
         return htmlAppend;
 	}
 
-	$('button#btn-show-history').click(function(){
-		$('button#btn-show-history').popModal({
+	$('button#btn-show-today-history').click(function(){
+		$('button#btn-show-today-history').popModal({
 			html : sendAjax(),
 			placement : 'bottomCenter',
 			showCloseBut : true,

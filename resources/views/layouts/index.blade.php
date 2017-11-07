@@ -14,7 +14,7 @@
 <div style="padding: 0;margin: 0; width: 100%">
     <div class="menu">
         <div class="list-case">
-            <span><h3>danh sách</h3></span>
+            <span><h3>Danh Sách</h3></span>
             <a href="/home" style="display: block; width: 100%; height: 100%"><div> <span>Tất Cả </span> </div> </a>
             <a href="/animal/list-in-common-home" style="display: block; width: 100%; height: 100%"><div> <span>Nhà Chung </span> </div> </a>
             <a href="/animal/list_ready_to_find_the_owner" style="display: block; width: 100%; height: 100%"><div> <span>Tìm Chủ </span> </div> </a>
@@ -48,4 +48,6 @@
         @yield('content')
     </div>
 </div>
+<script src="{{ asset('/js/layouts/index.js') }}"></script>
+
 @endsection

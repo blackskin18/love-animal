@@ -90,15 +90,41 @@
 									</td>
 									<td>{{$history->note}}</td>
 									<td>
-										@if($history->attribute == 'image')
-											<img src="{{ asset('animal_image/'.$history->animal_id.'/'.$history->old_value) }}" width="75" height="50" alt="">
+										@if ($history->attribute == 'image')
+										<img src="{{ asset('animal_image/'.$history->animal_id.'/'.$history->old_value) }}" width="75" height="50" alt="">
+										@elseif ($history->attribute == 'place' and $history->old_value == 'volunteer')
+										 	<a href="/volunteer/info/{{ $history->old_value_place->foster->id }}">
+			                                    {{ $history->old_value_place->foster->name }}
+			                                </a> 
+			                                <br>
+			                                {{ $history->old_value_place->note  }}
+										@elseif ($history->attribute == 'place' and $history->old_value == 'hospital')
+											<a href="/hospital/detail_info/{{ $history->old_value_place->hospital->id }}">
+			                                    {{ $history->old_value_place->hospital->name }}
+			                                </a> <br>
+			                                {{ $history->old_value_place->note }}
+										@elseif ($history->attribute == 'place' and $history->old_value == 'commonHome')
+												Nhà Chung
 										@else
 											{{$history->old_value}}
 										@endif
 									</td>
 									<td>
-										@if($history->attribute == 'image')
-											<img src="{{ asset('animal_image/'.$history->animal_id.'/'.$history->new_value) }}" width="75" height="50" alt="">
+										@if ($history->attribute == 'image')
+										<img src="{{ asset('animal_image/'.$history->animal_id.'/'.$history->new_value) }}" width="75" height="50" alt="">
+										@elseif ($history->attribute == 'place' and $history->new_value == 'volunteer')
+										 	<a href="/volunteer/info/{{ $history->new_value_place->foster->id }}">
+			                                    {{ $history->new_value_place->foster->name }}
+			                                </a> 
+			                                <br>
+			                                {{ $history->new_value_place->note  }}
+										@elseif ($history->attribute == 'place' and $history->new_value == 'hospital')
+											<a href="/hospital/detail_info/{{ $history->new_value_place->hospital->id }}">
+			                                    {{ $history->new_value_place->hospital->name }}
+			                                </a> <br>	
+			                                {{ $history->new_value_place->note }}
+										@elseif ($history->attribute == 'place' and $history->new_value == 'commonHome')
+												Nhà Chung
 										@else
 											{{$history->new_value}}
 										@endif
@@ -179,6 +205,10 @@
 		                                                Bệnh Viện: <a href="/hospital/detail_info/{{$place[0]->id}}"> {{$place[0]->name}} </a> <br> 
 		                                                Ghi chú: {{$place[1]->note}}
 		                                            </p>
+		                                        @else
+		                                        	<p>
+		                                        		{{$animal->place}}
+		                                        	</p>
 												@endif
 											</div>
 											<div class="col-lg-3 text-right">
