@@ -30,7 +30,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr dir-paginate="history in histories|orderBy:sortKey:reverse|filter:search|itemsPerPage:7" ng-click="showVolunteer(volunteer)">
+                <tr dir-paginate="history in histories|orderBy:sortKey:reverse|filter:search|itemsPerPage:10" ng-click="showVolunteer(volunteer)">
                     <td><div style="height:100%;width:100%"><% history.created_at %> </div></td>
                     <td>
                         <a href="/volunteer/info/<% history.user_id %>">
@@ -50,14 +50,43 @@
                     <td>
                         <div ng-if="history.attribute == 'image'" class="text-center" style="height:100%;width:100%">
                             <img src="{{ asset('animal_image') }}/<% history.animal_id %>/<% history.old_value %>"  width="75" height="50" alt="">
-                            </div>
-                        <div ng-if="history.attribute != 'image'" style="height:100%;width:100%"><% history.old_value %></div>
+                        </div>
+                        <div ng-if="history.attribute == 'place'"  style="height:100%;width:100%">
+                            <p ng-if="history.old_value == 'volunteer'"> nhà TNV: 
+                                <a href="/volunteer/info/<% history.old_value_place.foster.id %>">
+                                    <% history.old_value_place.foster.name %>
+                                </a>
+                            </p>
+                            <p ng-if="history.old_value == 'hospital'"> Bệnh Viện:
+                                <a href="/hospital/detail_info/<% history.old_value_place.hospital.id %>">
+                                    <% history.old_value_place.hospital.name %>
+                                </a>
+                             </p>
+                            <p ng-if="history.old_value == 'commonHome'"> Nhà Chung </p>
+                            <p ng-if="history.old_value != 'hospital' &&  history.old_value != 'volunteer' && history.old_value != 'commonHome' "> <% history.old_value %></p>
+                        </div>
+
+                        <div ng-if="history.attribute != 'image' && history.attribute != 'place'" style="height:100%;width:100%"><% history.old_value %></div>
                     </td>
                     <td> 
                         <div ng-if="history.attribute == 'image'" class="text-center" style="height:100%;width:100%">
                             <img src="{{ asset('animal_image') }}/<% history.animal_id %>/<% history.new_value %>"  width="75" height="50" alt="">
                             </div>
-                        <div ng-if="history.attribute != 'image'" style="height:100%;width:100%"><% history.new_value %></div>
+                        <div ng-if="history.attribute == 'place'"  style="height:100%;width:100%">
+                            <p ng-if="history.new_value == 'volunteer'"> nhà TNV: 
+                                <a href="/volunteer/info/<% history.new_value_place.foster.id %>">
+                                    <% history.new_value_place.foster.name %>
+                                </a>
+                            </p>
+                            <p ng-if="history.new_value == 'hospital'"> Bệnh Viện:
+                                <a href="/hospital/detail_info/<% history.new_value_place.hospital.id %>">
+                                    <% history.new_value_place.hospital.name %>
+                                </a>
+                            </p>
+                            <p ng-if="history.new_value == 'commonHome'"> Nhà Chung </p>
+                            <p ng-if="history.new_value != 'hospital' &&  history.new_value != 'volunteer' && history.new_value != 'commonHome' "> <% history.new_value %></p>
+                        </div>
+                        <div ng-if="history.attribute != 'image' && history.attribute != 'place'" style="height:100%;width:100%"><% history.new_value %></div>
                     </td>
                 </tr>
             </tbody>

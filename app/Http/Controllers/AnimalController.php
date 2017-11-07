@@ -10,6 +10,9 @@ use App\Status;
 use App\AnimalFoster;
 use App\UserRole;
 use App\history;
+use App\user;
+use App\Hospital;
+use App\AnimalHospital;
 use Illuminate\Database\Eloquent\Model;
 use Redirect;
 use Auth;
@@ -43,11 +46,20 @@ class AnimalController extends Controller
             $histories[$key]->user;
         }
 
+        $placeResult = null;
+        if($animal->place == 'hospital'){
+            $place = AnimalHospital::where('animal_id', $animalId)->orderBy('created_at', 'desc')->take(1)->get();
+            $placeResult = [$place[0]->hospital, $place[0] ];
+        } elseif($animal->place == 'volunteer'){
+            $place = AnimalFoster::where('animal_id', $animalId)->orderBy('created_at', 'desc')->take(1)->get();
+            $placeResult = [$place[0]->foster, $place[0] ];
+        }
         return view('animal/detail_info')   ->with('animal',           $animal)
                                             ->with('images',            $images)
-                                            ->with('histories',            $histories)
+                                            ->with('histories',         $histories)
                                             ->with('all_status',        $allStatus)
                                             ->with('animal_fosters',    $animalFosters)
+                                            ->with('place',             $placeResult )
                                             ->with('user_level',        $userRole[0]->role_info_id);
     }
 
@@ -62,14 +74,6 @@ class AnimalController extends Controller
         $animal->save();
         return $animal->created_at;
     }
-
-    // public function editStatus(Request $request, $animalId)
-    // {
-    //     $animal = Animal::find($animalId);
-    //     $animal->status = $request->data;
-    //     $animal->save();
-    //     return $animal->
-    // }
 
 
     public function editAddress(Request $request, $animalId)
@@ -140,23 +144,79 @@ class AnimalController extends Controller
         $animal = Animal::find($animalId);
 
         $history = new HistoryController;
-        $history->saveLog(Auth::User()->id, $animalId, 'name', $animal->description, $request->data, 'Sửa mô tả');
+        $history->saveLog(Auth::User()->id, $animalId, 'description', $animal->description, $request->data, 'Sửa mô tả');
 
         $animal->description = $request->data;
         $animal->save();
         return $animal->description;
     }
 
+
     public function editPlace(Request $request, $animalId)
     {
         $animal = Animal::find($animalId);
+        if($request->data == 'commonHome'){
+            $history = new HistoryController;
+            $history->saveLog(Auth::User()->id, $animalId, 'place', $animal->place, $request->data, 'Sửa địa điểm');
 
-        $history = new HistoryController;
-        $history->saveLog(Auth::User()->id, $animalId, 'name', $animal->place, $request->data, 'Sửa địa chỉ');
+            $animal->place = $request->data;
+            $animal->save();
+            return ['data'  => $request->data,
+                    'obj'   => $request->obj,
+                    'note'  => $request->note,
+                    ];
+        }
+        elseif ($request->data == 'volunteer'){
+            $history = new HistoryController;
+            $history->saveLog(Auth::User()->id, $animalId, 'name', $animal->place, $request->data, 'Sửa địa điểm');
 
-        $animal->place = $request->data;
-        $animal->save();
-        return $animal->place;
+            $animal->place = $request->data;
+            $animal->save();
+            $animalFosters = new AnimalFoster();
+            $animalFosters->animal_id = $animalId;
+            $animalFosters->foster_id = $request->obj;
+            $animalFosters->note = $request->note;
+            $animalFosters->save();
+
+            $volunteer = User::find($request->obj);
+
+            return ['data'  => $request->data,
+                    'obj'   => $volunteer,
+                    'note'  => $request->note,
+                    ];
+        }
+        elseif ($request->data == 'hospital'){
+            $history = new HistoryController;
+            $history->saveLog(Auth::User()->id, $animalId, 'place', $animal->place, $request->data, 'Sửa địa điểm');
+
+            $animal->place = $request->data;
+            $animal->save();
+            $animalHospital = new AnimalHospital();
+            $animalHospital->animal_id = $animalId;
+            $animalHospital->hospital_id = $request->obj;
+            $animalHospital->note = $request->note;
+            $animalHospital->save();
+
+            $hospital = Hospital::find($request->obj);
+
+
+            return ['data'  => $request->data,
+                    'obj'   => $hospital,
+                    'note'  => $request->note,
+                    ];
+        }
+        else{
+            $history = new HistoryController;
+            $history->saveLog(Auth::User()->id, $animalId, 'place', $animal->place, $request->note, 'Sửa địa điểm');
+
+            $animal->place = $request->note;
+            $animal->save();
+            return ['data'  => $request->data,
+                    'obj'   => $request->obj,
+                    'note'  => $request->note,
+                    ];
+        }
+
     }
 
 

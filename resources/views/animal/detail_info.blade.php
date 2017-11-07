@@ -165,9 +165,21 @@
 									<td>
 										<div class="row">
 											<div class="col-lg-9">
-												<p>
-													{{$animal->place}}
-												</p>
+												@if($animal->place == 'commonHome')
+													<p>
+														Nhà Chung
+													</p>
+												@elseif($animal->place == 'volunteer')
+													<p>
+		                                                Nhà TNV: <a href="/volunteer/info/{{$place[0]->id}}"> {{$place[0]->name}} </a> <br> 
+		                                                Ghi chú: {{$place[1]->note}}
+		                                            </p>
+												@elseif($animal->place == 'hospital')
+													<p>
+		                                                Bệnh Viện: <a href="/hospital/detail_info/{{$place[0]->id}}"> {{$place[0]->name}} </a> <br> 
+		                                                Ghi chú: {{$place[1]->note}}
+		                                            </p>
+												@endif
 											</div>
 											<div class="col-lg-3 text-right">
 												@if($user_level == 1 || $user_level == 2 || $user_level == 3 )

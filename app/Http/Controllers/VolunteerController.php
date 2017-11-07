@@ -101,4 +101,9 @@ class VolunteerController extends Controller
         return Redirect::to('/volunteer/info/'.$userId);
     }
 
+    public function getAllVolunteer()
+    {
+        
+    }
+
 }

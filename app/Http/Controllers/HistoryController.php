@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use App\History;
 use App\Status;
+use App\AnimalFoster;
+use App\AnimalHospital;
 use Carbon\Carbon;
 
 class HistoryController extends Controller
@@ -53,6 +55,29 @@ class HistoryController extends Controller
         $histories = History::orderBy('created_at','desc')->get();
         foreach ($histories as $key => $value) {
             $histories[$key]->user;
+            if($histories[$key]->attribute == 'place'){
+                $placeResult = null;
+                if($histories[$key]->old_value && $histories[$key]->old_value == 'hospital'){
+                    $place = AnimalHospital::where('animal_id', $histories[$key]->animal_id)->orderBy('created_at', 'desc')->take(1)->get();
+                    $place[0]->hospital;
+                    $histories[$key]['old_value_place'] =  $place[0];
+                } elseif($histories[$key]->old_value == 'volunteer'){
+                    $place = AnimalFoster::where('animal_id', $histories[$key]->animal_id)->orderBy('created_at', 'desc')->take(1)->get();
+                    $place[0]->foster;
+                    $histories[$key]['old_value_place'] =  $place[0];
+                }
+
+                if($histories[$key]->new_value && $histories[$key]->new_value == 'hospital'){
+                    $place = AnimalHospital::where('animal_id', $histories[$key]->animal_id)->orderBy('created_at', 'desc')->take(1)->get();
+                    $place[0]->hospital;
+                    $histories[$key]['new_value_place'] =  $place[0];
+                } elseif($histories[$key]->new_value == 'volunteer'){
+                    $place = AnimalFoster::where('animal_id', $histories[$key]->animal_id)->orderBy('created_at', 'desc')->take(1)->get();
+                    $place[0]->foster;
+                    $histories[$key]['new_value_place'] =  $place[0];
+                }
+
+            }
         }
         return $histories;
     }
@@ -63,6 +88,29 @@ class HistoryController extends Controller
         $histories = History::where('created_at', '>', $today)->orderBy('created_at','desc')->get();
         foreach ($histories as $key => $value) {
             $histories[$key]->user;
+            if($histories[$key]->attribute == 'place'){
+                $placeResult = null;
+                if($histories[$key]->old_value && $histories[$key]->old_value == 'hospital'){
+                    $place = AnimalHospital::where('animal_id', $histories[$key]->animal_id)->orderBy('created_at', 'desc')->take(1)->get();
+                    $place[0]->hospital;
+                    $histories[$key]['old_value_place'] =  $place[0];
+                } elseif($histories[$key]->old_value == 'volunteer'){
+                    $place = AnimalFoster::where('animal_id', $histories[$key]->animal_id)->orderBy('created_at', 'desc')->take(1)->get();
+                    $place[0]->foster;
+                    $histories[$key]['old_value_place'] =  $place[0];
+                }
+
+                if($histories[$key]->new_value && $histories[$key]->new_value == 'hospital'){
+                    $place = AnimalHospital::where('animal_id', $histories[$key]->animal_id)->orderBy('created_at', 'desc')->take(1)->get();
+                    $place[0]->hospital;
+                    $histories[$key]['new_value_place'] =  $place[0];
+                } elseif($histories[$key]->new_value == 'volunteer'){
+                    $place = AnimalFoster::where('animal_id', $histories[$key]->animal_id)->orderBy('created_at', 'desc')->take(1)->get();
+                    $place[0]->foster;
+                    $histories[$key]['new_value_place'] =  $place[0];
+                }
+
+            }
         }
         return $histories;
 
