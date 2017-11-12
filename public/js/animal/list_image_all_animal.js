@@ -54,19 +54,22 @@ $(function(){
         return htmlAppend;
 	}
 	for(let i = 0; i <= sumImage; i++){
-		$('div#image_' + i).click(function(){
-			var animalId = $('div#image_' + i + '>input').val();
+		let animalId = $('div#image_' + i + '>input').val();
+		$('div#image_' + i +'>img').hover(function(){
 			url = window.location.origin + "/animal/summary_detail/" + animalId;
 			$('div#image_' + i).popModal({
 				html : sendAjax(url),
-				placement : 'leftTop',
+				placement : 'rightTop',
 				showCloseBut : true,
 				onOkBut : function(){ },
 				onCancelBut : function(){ },
 				onLoad : function(){ },
 				onClose : function(){ }
 			});
-		})
+		});
+		$('div#image_' + i).click(function(){
+			window.open(window.location.origin + "/animal/detail_info/" + animalId);
+		});
 	}
 	
 	//=====================================###===============================================
@@ -107,8 +110,6 @@ $(function(){
 									${data[index].animal_id}
 								</div>
 		            		`
-		            		// console.log(data[19]);
-		            		// console.log(data[19].animal_id);
 		            		$('div#list-image-box').append(content);
 		            	}
 	            		$('input#last_animal_id').val(data[lastIndex].animal_id);
@@ -116,13 +117,14 @@ $(function(){
 	            		// thêm sự kiện cho ảnh vừa thêm vào
 	            		var sumImage = $('input#sum_image').val();
 						for(let i = 0; i <= sumImage; i++){
+							let animalId = $('div#image_' + i + '>input').val();
+							$('div#image_' + i).off('hover');
 							$('div#image_' + i).off('click');
-							$('div#image_' + i).click(function(){
-								var animalId = $('div#image_' + i + '>input').val();
+							$('div#image_' + i).hover(function(){
 								url = window.location.origin + "/animal/summary_detail/" + animalId;
-								$('div#image_' + i).popModal({
+								$('div#image_' + i +' img').popModal({
 									html : sendAjax(url),
-									placement : 'leftTop',
+									placement : 'rightTop',
 									showCloseBut : true,
 									onOkBut : function(){ },
 									onCancelBut : function(){ },
@@ -130,6 +132,9 @@ $(function(){
 									onClose : function(){ }
 								});
 							})
+							$('div#image_' + i).click(function(){
+								window.open(window.location.origin + "/animal/detail_info/" + animalId);
+							});
 						}
 		            },
 		            error: function(data) {

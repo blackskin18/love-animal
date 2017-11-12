@@ -28,16 +28,25 @@ class HospitalController extends Controller
     }
 
     public function postListHospital()
-    {
+    {   
+        $userId = Auth::user()->id;
+        $userRoles = UserRole::where('user_id', $userId)->get();
+        $level = 100;
+        foreach ($userRoles as $key => $userRole) {
+            if($userRole->role_id < $level){
+                $level = $userRole->role_id;
+            }
+        }
+
         $hospitals = Hospital::All();
-        return $hospitals;
+        return ['hospitals' => $hospitals, 'user_level' => $level];
     }
 
     public function detailHospital($hospitalId){
         $hospital = Hospital::find($hospitalId);
         $listRemove = [];
         $userId = Auth::user()->id;
-        $userRole = UserRole::where('user_info_id', $userId)->get();
+        $userRole = UserRole::where('user_id', $userId)->get();
         $animalHospitals = AnimalHospital::orderBy('animal_id')->where('hospital_id', $hospitalId)->get();
         foreach ($animalHospitals as $key => $animalHospital) {
             $animalImage = AnimalImage::where('animal_id', $animalHospital->animal_id)->get();
@@ -56,7 +65,7 @@ class HospitalController extends Controller
 
         $sumImage = AnimalImage::orderBy('animal_id', 'desc')->take(1)->get();
 
-        return view('hospital/detail_info')->with('images', $animalHospitals)->with('hospital', $hospital)->with('user_level', $userRole[0]->role_info_id)->with('sum_image', $sumImage[0]->id);
+        return view('hospital/detail_info')->with('images', $animalHospitals)->with('hospital', $hospital)->with('user_level', $userRole[0]->role_id)->with('sum_image', $sumImage[0]->id);
     }
 
     public function editPhone($hospitalId, Request $request)
@@ -89,6 +98,14 @@ class HospitalController extends Controller
         $hospital->name = $request->data;
         $hospital->save();
         return $hospital->name;
+    }
+
+    public function deleteHospital($hospitalId)
+    {   
+        
+        $hospital = Hospital::find($hospitalId);
+        $hospital->delete();
+        return 'true';
     }
 
 }

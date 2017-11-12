@@ -40,9 +40,10 @@ class AnimalController extends Controller
         $allStatus = Status::all();
         $animalFosters = AnimalFoster::where('animal_id', $animalId)->get();
         $userId = Auth::user()->id;
-        $userRole = UserRole::where('user_info_id', $userId)->get();
+        $userRole = UserRole::where('user_id', $userId)->get();
         
         $histories = History::where('animal_id', $animalId)->orderBy('created_at','desc')->get();
+        
         foreach ($histories as $key => $value) {
             $histories[$key]->user;
             if($histories[$key]->attribute == 'place'){
@@ -67,7 +68,6 @@ class AnimalController extends Controller
                 }
             }
         }
-
         $placeResult = null;
         if($animal->place == 'hospital'){
             $place = AnimalHospital::where('animal_id', $animalId)->orderBy('created_at', 'desc')->take(1)->get();
@@ -84,7 +84,7 @@ class AnimalController extends Controller
                                             ->with('all_status',        $allStatus)
                                             ->with('animal_fosters',    $animalFosters)
                                             ->with('place',             $placeResult )
-                                            ->with('user_level',        $userRole[0]->role_info_id);
+                                            ->with('user_level',        $userRole[0]->role_id);
     }
 
 

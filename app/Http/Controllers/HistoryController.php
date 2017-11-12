@@ -109,7 +109,6 @@ class HistoryController extends Controller
                     $place[0]->foster;
                     $histories[$key]['new_value_place'] =  $place[0];
                 }
-
             }
         }
         return $histories;

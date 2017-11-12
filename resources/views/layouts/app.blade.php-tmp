@@ -9,15 +9,22 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <!-- Styles -->
-    <link type="text/css" rel="stylesheet" href="{{ asset('css/popModal.css') }}">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/layouts/app.css') }}" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/popModal.css') }}">
+
 
     <script src="{{ asset('js/jquery-3.2.1.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+    <script src="{{ asset('js/pagination/dirPagination.js') }}"></script>
     <script src="{{ asset('js/popModal.js') }}"></script>
+
     <script src="{{ asset('js/layouts/app.js') }}"></script>
+
+
 
     @yield('link-css')
     @yield('link-js')
@@ -43,15 +50,17 @@
                         <!-- {{ config('app  .name', 'Love-pet') }} -->
                     </a>
                 </div>
-                
+
                 <div class="collapse navbar-collapse" id="app-navbar-collapse" style="display: inline-block;">
                     <!-- Left Side Of Navbar -->
                     <div class="navbar-nav" style="width: 70%; height: 50px; margin-left: 10%">
                         <div style="display: inline-block; height: 100%; margin: auto; margin-left: 40%;" >
+                            <!-- <button class="btn btn-info"><span class="glyphicon glyphicon-envelope"></span></button> -->
                             <button id="btn-show-today-history"><img src="{{ asset('logo/Notify2.jpg') }}" style="background-size: cover;" width="35px" height="35px" alt=""></button>
-                            <input type="text" class="search"  id="search-box" placeholder="Search" disabled class="form-control" style="display: inline-block;">
+                            <input type="text" class="search" ng-model="search" placeholder="Search">
                         </div>
                     </div>
+
                     <!-- Right Side Of Navbar -->
                 </div>
             </div>
@@ -98,4 +107,3 @@
     @yield('script')
 </body>
 </html>
-

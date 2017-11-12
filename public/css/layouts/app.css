@@ -7,7 +7,7 @@
         font-family: verdana, sans-serif;
     }
 
-    input[type=text] {
+    input[type=text].search {
         width: 250px;
         box-sizing: border-box;
         border: 2px solid rgba(240, 104, 34, 0.6);
@@ -46,10 +46,10 @@
             height: 30px;
         }
         div.menu div.list-case h3{
-            color:  #f06822;
+            color: #f06822;
             display: block;
-            height: 17px;
-            line-height: 17px;
+            height: 30px;
+            line-height: 27px;
             overflow: hidden;
         }
         a{
@@ -83,3 +83,5 @@
         a.ng-binding{
             color:  #f06822;
         }
+
+    .glyphicon-chevron-down:before{content:"\e114"}

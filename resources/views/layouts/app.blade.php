@@ -11,6 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/layouts/app.css') }}" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="{{ asset('css/popModal.css') }}">
@@ -57,7 +58,7 @@
                         <div style="display: inline-block; height: 100%; margin: auto; margin-left: 40%;" >
                             <!-- <button class="btn btn-info"><span class="glyphicon glyphicon-envelope"></span></button> -->
                             <button id="btn-show-today-history"><img src="{{ asset('logo/Notify2.jpg') }}" style="background-size: cover;" width="35px" height="35px" alt=""></button>
-                            <input type="text" ng-model="search" placeholder="Search">
+                            <input type="text" class="search" ng-model="search" placeholder="Search">
                         </div>
                     </div>
 

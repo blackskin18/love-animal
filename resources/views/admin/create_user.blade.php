@@ -27,13 +27,12 @@
 			  	<div class="form-group">
 			    	<label class="control-label col-sm-2" for="email">Chức vụ</label>
 		    		<div class="col-sm-10">
-						<select name="level" class="form-control">
+						<select name="level[]" multiple class="form-control">
 							<option value="">-------chọn kiểu người dùng-----</option>
 							@foreach($role_infos as $role_info)
-								<option value="{{$role_info->role_info_id}}">{{$role_info->role_description}}</option>
+								<option value="{{$role_info->id}}">{{$role_info->role_description}}</option>
 							@endforeach
 						</select>
-
 			      		<!-- <input type="email" name="email" class="form-control" placeholder="nhập email"> -->
 			    	</div>
 			  	</div>

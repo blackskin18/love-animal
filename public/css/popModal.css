@@ -4,7 +4,7 @@ Author: vadimsva
 Github: https://github.com/vadimsva/popModal
 */
 /* popModal */
-.popModal {position:absolute;background:#fff;padding:15px;border:1px solid #c5d0db;box-shadow:0 2px 8px rgba(0,0,0,0.12);text-align:left;max-width:300px;min-width:180px;z-index:9997;box-sizing:border-box;border-radius:3px}
+.popModal {position:absolute;background:#fff;padding:15px;border:1px solid #c5d0db;box-shadow:0 2px 8px rgba(0,0,0,0.12);text-align:left;max-width:300px;min-width:350px;z-index:9997;box-sizing:border-box;border-radius:3px}
 .popModal.expand {max-width:500px}
 .popModal .close {line-height:16px;font-size:28px;width:16px;font-weight:bold;font-family:serif;position:absolute;right:8px;top:8px;color:#000;opacity:0.2;padding:0;cursor:pointer;background:transparent;border:0;outline:0}
 .popModal .close:hover {opacity:1}
@@ -56,7 +56,7 @@ Github: https://github.com/vadimsva/popModal
 .notifyModal.overlay.center {top:0;bottom:0}
 .notifyModal.open {opacity:1}
 .notifyModal.open .notifyModal_content {transform:scale(1)}
-.notifyModal .notifyModal_content {position:absolute;background:#F9EDBE;width:380px;min-width:200px;padding:25px;margin:auto;text-align:justify;box-shadow:0 2px 6px rgba(0,0,0,0.3);transition:all 200ms ease;transform:scale(0.95);font-size:14px;font-weight:initial;font-style:initial;color:initial;text-decoration:initial;text-transform:initial;line-height:18px;box-sizing:border-box;border-radius:3px}
+.notifyModal .notifyModal_content {position:absolute;background:#F9EDBE;width:380px;min-width:400px;padding:25px;margin:auto;text-align:justify;box-shadow:0 2px 6px rgba(0,0,0,0.3);transition:all 200ms ease;transform:scale(0.95);font-size:14px;font-weight:initial;font-style:initial;color:initial;text-decoration:initial;text-transform:initial;line-height:18px;box-sizing:border-box;border-radius:3px}
 .notifyModal.alert .notifyModal_content {background:#922626;color:#eab1b1}
 .notifyModal.simple .notifyModal_content {background:#fff;color:#333}
 .notifyModal.dark .notifyModal_content {background:#333;color:#ccc}

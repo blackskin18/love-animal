@@ -36,7 +36,13 @@
                         <div ng-if="animal.file_name" style="height:100%;width:100%"><img src="{{ asset('animal_image/<% animal.id %>/<% animal.file_name %>') }}" alt="<% animal.description %>" width="75" height="50"></div>
                     </td>
                     <td> <div style="height:100%;width:100%"><% animal.id %> </div></td>
-                    <td> <div style="height:100%;width:100%"><% animal.place %></div></td>
+                    <td> 
+                        <div style="height:100%;width:100%" ng-if="animal.place == 'commonHome'"> Nhà Chung</div>
+                        <div style="height:100%;width:100%" ng-if="animal.place == 'volunteer'"> Nhà TNV </div>
+                        <div style="height:100%;width:100%" ng-if="animal.place == 'hospital'"> Bệnh Viện</div>
+                        <div style="height:100%;width:100%" ng-if="animal.place != 'commonHome' && animal.place != 'volunteer' && animal.place != 'hospital'"> <% animal.place %></div>
+                        
+                    </td>
                     <td> <div style="height:100%;width:100%"><% animal.address %></div></td>
                     <td> <div style="height:100%;width:100%"><% animal.status %></div></td>
                     <td> <div style="height:100%;width:100%"><% animal.name %></div></td>

@@ -151,21 +151,25 @@ $(function(){
         return htmlAppend;
     }
     for(let i = 0; i <= sumImage; i++){
-        $('div#image_' + i).click(function(){
-            var animalId = $('div#image_' + i + '>input').val();
+        let animalId = $('div#image_' + i + '>input').val();
+        $('div#image_' + i).hover(function(){
             url = window.location.origin + "/animal/summary_detail/" + animalId;
             $('div#image_' + i).popModal({
                 html : sendAjax(url),
                 // html: function(){
                 //  return "abc";
                 // },
-                placement : 'leftTop',
+                placement : 'rightTop',
                 showCloseBut : true,
                 onOkBut : function(){ },
                 onCancelBut : function(){ },
                 onLoad : function(){ },
                 onClose : function(){ }
             });
-        })
+        });
+
+        $('div#image_' + i).click(function(){
+            window.open(window.location.origin + "/animal/detail_info/" + animalId)
+        });
     }
 })

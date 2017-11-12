@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return Redirect::to('auth/google');
 });
 
 Auth::routes();
@@ -69,17 +69,21 @@ route::post('/animal_image/change/{imageId}', 'AnimalController@changeImage');
 route::get('/hospital/list', 'HospitalController@getListHospital');
 route::get('/api/get_list_hospital' , 'HospitalController@postListHospital');
 route::get('/hospital/detail_info/{hospitalId}', 'HospitalController@detailHospital');
-route::post('/hospital/edit/edit-phone/{hospitalId}', 'HospitalController@editPhone');
-route::post('/hospital/edit/edit-note/{hospitalId}', 'HospitalController@editNote');
-route::post('/hospital/edit/edit-address/{hospitalId}', 'HospitalController@editAddress');
-route::post('/hospital/edit/edit-name/{hospitalId}', 'HospitalController@editName');
+route::post('/hospital/edit/edit-phone/{hospitalId}', 'HospitalController@editPhone')->middleware('system_admin');
+route::post('/hospital/edit/edit-note/{hospitalId}', 'HospitalController@editNote')->middleware('system_admin');
+route::post('/hospital/edit/edit-address/{hospitalId}', 'HospitalController@editAddress')->middleware('system_admin');
+route::post('/hospital/edit/edit-name/{hospitalId}', 'HospitalController@editName')->middleware('system_admin');
+route::get('/api/delete_hospital/{hospitalId}', 'HospitalController@deleteHospital');
 
 
 route::get('/volunteer/list', 'VolunteerController@getListVolunteer');
 route::get('/api/get_list_volunteer' , 'VolunteerController@postListVolunteer');
+route::get('/volunteer/list_owner', 'VolunteerController@getListOwner');
+route::get('/api/get_list_owner' , 'VolunteerController@postListOwner');
 route::get('volunteer/info/{user_id}', 'VolunteerController@volunteerInfo');
 route::post('volunteer/edit_info/{user_id}', 'VolunteerController@editInfo');
 route::post('volunteer/change-avatar/{userId}', 'VolunteerController@changeAvatar');
+route::get('/api/delete_volunteer/{userId}', 'VolunteerController@deleteUser');
 
 
 route::get('/api/get_all_status', 'AnimalController@getAllStatus');

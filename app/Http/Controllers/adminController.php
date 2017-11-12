@@ -31,11 +31,11 @@ class adminController extends Controller
     {
 
         $userId = Auth::user()->id;
-        $userRoles = UserRole::where('user_info_id', $userId)->get();
+        $userRoles = UserRole::where('user_id', $userId)->get();
         foreach ($userRoles as $key => $userRole) {
-            if($userRole->role_info_id == 3 || $userRole->role_info_id == 3){
-                $roleInfos = RoleInfo::where('role_info_id', '>', 3)->get();
-            } elseif($userRole->role_info_id == 1){
+            if($userRole->role_id == 3 || $userRole->role_id == 3){
+                $roleInfos = RoleInfo::where('role_id', '>', 3)->get();
+            } elseif($userRole->role_id == 1){
                 $roleInfos = RoleInfo::all();
                 break;
             }
@@ -50,10 +50,12 @@ class adminController extends Controller
         $user->email = $request->email;
         $user->save();
 
-        $userRole = new UserRole();
-        $userRole->user_info_id = $user->id;
-        $userRole->role_info_id = $request->level;
-        $userRole->save();
+        foreach ($request->level as $key => $level) {
+            $userRole = new UserRole();
+            $userRole->user_id = $user->id;
+            $userRole->role_id = $level;
+            $userRole->save();
+        }
 
         return Redirect::to('/admin/create_user');
     }
