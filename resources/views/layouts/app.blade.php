@@ -11,8 +11,10 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+
     <link href="{{ asset('css/layouts/app.css') }}" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="{{ asset('css/popModal.css') }}">
     
@@ -34,7 +36,7 @@
 <body ng-app="pagination">
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
-            <div class="container" style="margin-left: 80px; width: 1050px; display: inline-block;">
+            <div class="container" style="margin-left: 10px; width: 1050px; display: inline-block;">
                 <div class="navbar-header" style="display: inline-block;">
 
                     <!-- Collapsed Hamburger -->
@@ -54,12 +56,15 @@
                 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse" style="display: inline-block;">
                     <!-- Left Side Of Navbar -->
-                    <div class="navbar-nav" style="width: 70%; height: 50px; margin-left: 10%">
-                        <div style="display: inline-block; height: 100%; margin: auto; margin-left: 40%;" >
+                    <div class="navbar-nav" style="width: 70%; height: 50px; margin-left: 115px">
+                        <div style="display: inline-block; height: 100%;" >
                             <!-- <button class="btn btn-info"><span class="glyphicon glyphicon-envelope"></span></button> -->
                             <button id="btn-show-today-history"><img src="{{ asset('logo/Notify2.jpg') }}" style="background-size: cover;" width="35px" height="35px" alt=""></button>
                             <input type="text" class="search" ng-model="search" placeholder="Search">
                         </div>
+                        <!-- <div style="display: inline-block;">
+                            <input type="text">
+                        </div> -->
                     </div>
 
                     <!-- Right Side Of Navbar -->
@@ -85,6 +90,10 @@
                             <li>
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
+                                            a = window.open('https://accounts.google.com/Logout');
+                                            $(a).ready(function(){
+                                                a.close();
+                                            })
                                              document.getElementById('logout-form').submit();">
                                     Đăng Xuất
                                 </a>

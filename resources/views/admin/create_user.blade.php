@@ -6,6 +6,14 @@
 
 @section('content')
 	<div class="row">
+		<div class="col-sm-6 col-sm-offset-3">
+			<h2>
+				Thêm 1 tài khoản người dùng
+			</h2>
+		</div>
+	</div>
+
+	<div class="row" style="margin-top: 40px">
 		<div class="col-sm-6 col-sm-offset-2">
 			@if (count($errors) > 0)
 				<div class="alert alert-danger">
@@ -38,7 +46,7 @@
 			  	</div>
 			  	<div class="form-group"> 
 				    <div class="col-sm-offset-2 col-sm-10">
-				      	<button type="submit" class="btn btn-default">thêm người dùng</button>
+				      	<button type="submit" class="btn btn-default">Tạo mới</button>
 				    </div>
 		  		</div>
 			</form>

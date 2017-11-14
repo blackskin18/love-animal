@@ -1,10 +1,10 @@
 
 $(function(){
-	var test = $('img.animal_image').width();
+	let test = $('img.animal_image').width();
 	$('img.animal_image').css('height', test);
 	// console.log(test);
 
-	var sumImage = $('input#sum_image').val();
+	let sumImage = $('input#sum_image').val();
 	function sendAjax (url){
         $.ajaxSetup({
             headers: {
@@ -22,9 +22,9 @@ $(function(){
             error: function(data) {
             }
         });
-        var animal =  JSON.parse(localStorage.getItem("info"));
+        let animal =  JSON.parse(localStorage.getItem("info"));
         // console.log(animal);
-        var htmlAppend = 
+        let htmlAppend = 
         `<div class="text-center">
         	<h3 class="text">
         		Ca ${animal.id}
@@ -56,6 +56,7 @@ $(function(){
 	for(let i = 0; i <= sumImage; i++){
 		let animalId = $('div#image_' + i + '>input').val();
 		$('div#image_' + i +'>img').hover(function(){
+			console.log(animalId);
 			url = window.location.origin + "/animal/summary_detail/" + animalId;
 			$('div#image_' + i).popModal({
 				html : sendAjax(url),
@@ -67,18 +68,18 @@ $(function(){
 				onClose : function(){ }
 			});
 		});
-		$('div#image_' + i).click(function(){
+		$('div#image_' + i +'>img').click(function(){
 			window.open(window.location.origin + "/animal/detail_info/" + animalId);
 		});
 	}
 	
 	//=====================================###===============================================
-	var nearToBottom = 100;
+	let nearToBottom = 100;
 	$(window).scroll(function () {
 		if ($(window).scrollTop() + $(window).height() > 
 		    $(document).height() - nearToBottom) {
 				let lastAnimalId = $('input#last_animal_id').val();
-				var url = window.location.origin + "/animal/list_image/loadmore/" + lastAnimalId;
+				let url = window.location.origin + "/animal/list_image/loadmore/" + lastAnimalId;
 			 	$.ajaxSetup({
 	            headers: {
 	                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
@@ -90,8 +91,8 @@ $(function(){
 		            datatType: "json",
 		            async: false,
 		            success: function(data){
-		            	var lastIndex = 0;
-		            	for(var index in data){
+		            	let lastIndex = 0;
+		            	for(let index in data){
 		            		lastIndex = index;
 		            		content = `
 							<div class="col-sm-2" style = "padding-bottom: 10px">
@@ -115,14 +116,15 @@ $(function(){
 	            		$('input#last_animal_id').val(data[lastIndex].animal_id);
 	            		//=================================================================================
 	            		// thêm sự kiện cho ảnh vừa thêm vào
-	            		var sumImage = $('input#sum_image').val();
+	            		let sumImage = $('input#sum_image').val();
+	            		console.log(sumImage);
 						for(let i = 0; i <= sumImage; i++){
 							let animalId = $('div#image_' + i + '>input').val();
-							$('div#image_' + i).off('hover');
-							$('div#image_' + i).off('click');
-							$('div#image_' + i).hover(function(){
+							$('div#image_' + i+'>img').unbind();
+							$('div#image_' + i+'>img').hover(function(){
+								console.log(animalId);
 								url = window.location.origin + "/animal/summary_detail/" + animalId;
-								$('div#image_' + i +' img').popModal({
+								$('div#image_' + i +'>img').popModal({
 									html : sendAjax(url),
 									placement : 'rightTop',
 									showCloseBut : true,
@@ -140,7 +142,7 @@ $(function(){
 		            error: function(data) {
 		            }
 		        });
-	    	var test = $('img.animal_image').width();
+	    	let test = $('img.animal_image').width();
 			$('img.animal_image').css('height', test);
 		}
 	});

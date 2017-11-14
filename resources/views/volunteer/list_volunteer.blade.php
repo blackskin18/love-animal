@@ -1,7 +1,7 @@
 @extends('layouts.index')
 @section('content')
     <div >
-    <div class="" id="table-list-volunteer" ng-controller="listData" style="margin-top: 15px;display: none">
+    <div class="" id="table-list-volunteer" ng-controller="listData" style="display: none">
         <table class="table table-bordered table-hover" ng-app>
             <thead>
                <tr>

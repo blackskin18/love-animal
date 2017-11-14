@@ -2,8 +2,8 @@
 @section('link-css')
 @endsection
 @section('content')
-    <div >
-    <div class="" id="table-list-history" ng-controller="listData" style="display: none; margin-top: 15px;">
+<div>
+    <div class="" id="table-list-history" ng-controller="listData" style="display: none;">
         <table class="table table-bordered table-hover" ng-app>
             <thead>
                <tr>
@@ -49,7 +49,8 @@
                     <td> <div style="height:100%;width:100%"><% history.note %></div></td>
                     <td>
                         <div ng-if="history.attribute == 'image'" class="text-center" style="height:100%;width:100%">
-                            <img src="{{ asset('animal_image') }}/<% history.animal_id %>/<% history.old_value %>"  width="75" height="50" alt="">
+                            <img ng-if="history.old_value" src="{{ asset('animal_image') }}/<% history.animal_id %>/<% history.old_value %>"  width="75" height="50" alt="">
+                            <p ng-if="!history.old_value"></p>
                         </div>
                         <div ng-if="history.attribute == 'place'"  style="height:100%;width:100%">
                             <p ng-if="history.old_value == 'volunteer'"> nhà TNV: 

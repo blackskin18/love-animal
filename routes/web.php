@@ -27,6 +27,9 @@ Route::get('/admin/post/create_user', 'adminController@postCreateUser')->middlew
 Route::get('/admin/create_case','adminController@getCreateCase')->middleware('system_admin');
 Route::post('/admin/post/create_case','adminController@postCreateCase')->middleware('system_admin');
 
+Route::get('/admin/create_hospital','adminController@getCreateHospital')->middleware('system_admin');
+Route::post('/admin/post/create_hospital','adminController@postCreateHospital')->middleware('system_admin');
+
 
 route::get('/animal/list_image/all','HomeController@getListImageAnimal');
 route::get('/animal/list_image/loadmore/{animalId}','HomeController@getMoreToLisstAllImage');
