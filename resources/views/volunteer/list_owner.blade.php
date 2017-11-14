@@ -1,7 +1,7 @@
 @extends('layouts.index')
 @section('content')
     <div >
-    <div class="" id="table-list-volunteer" ng-controller="listData" style="display: none">
+    <div class="" id="table-list-volunteer" ng-controller="listData"  style="margin-top: 15px; display: none">
         <table class="table table-bordered table-hover" ng-app>
             <thead>
                <tr>
@@ -19,7 +19,7 @@
                     </th>
                     <th>
                         Xóa
-                    </th>
+                    </th> 
                 </tr>
             </thead>
             <tbody>
@@ -53,9 +53,8 @@
         });
 
         app.controller('listData', function($scope, $http, $location) {
-            $http.get("/api/get_list_volunteer")
+            $http.get("/api/get_list_owner")
             .then(function(response) {
-                console.log(response.data.volunteers);
                 $scope.volunteers = response.data.volunteers;
                 $scope.level = response.data.user_level;
             });
@@ -88,7 +87,6 @@
                     });
                 }
             }
-
 
             $scope.sort = function(keyname){
                 $scope.sortKey = keyname;   //set the sortKey to the param passed

@@ -12,7 +12,8 @@
     <!-- Styles -->
     <link type="text/css" rel="stylesheet" href="{{ asset('css/popModal.css') }}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    
     <link href="{{ asset('css/layouts/app.css') }}" rel="stylesheet">
 
     <script src="{{ asset('js/jquery-3.2.1.js') }}"></script>
@@ -23,10 +24,10 @@
     @yield('link-js')
 
 </head>
-<body ng-app="pagination">
+<body>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
-            <div class="container" style="margin-left: 80px; width: 1050px; display: inline-block;">
+            <div class="container" style="margin-left: 10px; width: 1050px; display: inline-block;">
                 <div class="navbar-header" style="display: inline-block;">
 
                     <!-- Collapsed Hamburger -->
@@ -46,13 +47,12 @@
                 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse" style="display: inline-block;">
                     <!-- Left Side Of Navbar -->
-                    <div class="navbar-nav" style="width: 70%; height: 50px; margin-left: 10%">
-                        <div style="display: inline-block; height: 100%; margin: auto; margin-left: 40%;" >
+                    <div class="navbar-nav" style="width: 70%; height: 50px">
+                        <div style="display: inline-block; height: 100%; margin: auto; margin-left: 115px;" >
                             <button id="btn-show-today-history"><img src="{{ asset('logo/Notify2.jpg') }}" style="background-size: cover;" width="35px" height="35px" alt=""></button>
-                            <input type="text" id="search-box" placeholder="Search" disabled class="form-control" style="display: inline-block;">
+                            <input type="text" class="search"  id="search-box" placeholder="Search" disabled class="form-control" style="display: inline-block;">
                         </div>
                     </div>
-
                     <!-- Right Side Of Navbar -->
                 </div>
             </div>

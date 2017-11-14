@@ -34,7 +34,8 @@
             'phone'     : $('input#input-phone').val(),
             'address'   : $('input#input-address').val(),
             'note'      : $('input#input-note').val(),
-            'gender'    : $('select#input-gender').val()
+            'gender'    : $('select#input-gender').val(),
+            'user_roles': $('select#user_roles').val()
         }
 
         $.ajaxSetup({

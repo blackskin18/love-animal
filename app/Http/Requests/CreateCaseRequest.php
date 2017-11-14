@@ -34,6 +34,8 @@ class CreateCaseRequest extends FormRequest
         }
         return $rules;
     }
+
+
     public function messages()
     {
         return [

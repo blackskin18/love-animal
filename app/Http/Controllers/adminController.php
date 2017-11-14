@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
+use App\Hospital;
 use App\RoleInfo;
 use App\UserRole;
 use App\Status;
 use App\Animal;
 use App\AnimalImage;
+use App\Http\Requests\CreateHospitalRequest;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\CreateCaseRequest;
 use Redirect;
@@ -31,11 +33,11 @@ class adminController extends Controller
     {
 
         $userId = Auth::user()->id;
-        $userRoles = UserRole::where('user_info_id', $userId)->get();
+        $userRoles = UserRole::where('user_id', $userId)->get();
         foreach ($userRoles as $key => $userRole) {
-            if($userRole->role_info_id == 3 || $userRole->role_info_id == 3){
-                $roleInfos = RoleInfo::where('role_info_id', '>', 3)->get();
-            } elseif($userRole->role_info_id == 1){
+            if($userRole->role_id == 3 || $userRole->role_id == 3){
+                $roleInfos = RoleInfo::where('role_id', '>', 3)->get();
+            } elseif($userRole->role_id == 1){
                 $roleInfos = RoleInfo::all();
                 break;
             }
@@ -50,10 +52,12 @@ class adminController extends Controller
         $user->email = $request->email;
         $user->save();
 
-        $userRole = new UserRole();
-        $userRole->user_info_id = $user->id;
-        $userRole->role_info_id = $request->level;
-        $userRole->save();
+        foreach ($request->level as $key => $level) {
+            $userRole = new UserRole();
+            $userRole->user_id = $user->id;
+            $userRole->role_id = $level;
+            $userRole->save();
+        }
 
         return Redirect::to('/admin/create_user');
     }
@@ -108,6 +112,29 @@ class adminController extends Controller
         $history->saveLog(Auth::User()->id, $animal->id, null , null, null, 'Tạo mới 1 case');
 
         return Redirect::to('/animal/detail_info/'.$animal->id);
+    }
+
+    public function getCreateHospital()
+    {
+        return view('admin/create_hospital');
+    }
+
+
+    public function postCreateHospital(CreateHospitalRequest $request)
+    {
+        $name = $request->name;
+        $phone = $request->phone;
+        $address = $request->address;
+        $note = $request->note;
+        
+        $hospital = new Hospital();
+        $hospital->name = $name;
+        $hospital->phone = $phone;
+        $hospital->address = $address;
+        $hospital->note = $note;
+        $hospital->save();
+
+        return Redirect::to('/hospital/detail_info/'.$hospital->id);
     }
 
 }

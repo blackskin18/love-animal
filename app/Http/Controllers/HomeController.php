@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Animal;
 use App\AnimalImage;
 use Illuminate\Support\Facades\DB;
+use Redirect;
 
 class HomeController extends Controller
 {
@@ -49,6 +50,7 @@ class HomeController extends Controller
     public function index()
     {   
         return view('home');
+        // return Redirect::to('auth/google');
     }
 
     public function postListAllAnimal()
@@ -80,7 +82,7 @@ class HomeController extends Controller
 
     public function postListInCommonHome()
     {
-        $animals = $this->getList('animals.place','Nhà Chung');
+        $animals = $this->getList('animals.place','commonHome');
         return $animals;
     }
 

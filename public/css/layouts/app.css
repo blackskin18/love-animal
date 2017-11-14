@@ -7,7 +7,7 @@
         font-family: verdana, sans-serif;
     }
 
-    input[type=text] {
+    input[type=text].search {
         width: 250px;
         box-sizing: border-box;
         border: 2px solid rgba(240, 104, 34, 0.6);
@@ -24,18 +24,18 @@
         padding: 5px;
     }
 
-    input[type=text]:focus {
+    input[type=text].search:focus {
         width: 350px;
     }
     .navbar{
         margin: 0;
     }
     div.menu{
-            background-color: #E9EBEE;
-            width: 15%;
+            background-color: #1A4D9A;
+            width: 200px;
             height: 800px;
             float: left;
-            color:  #f06822;
+            color:  #ffffff;
         }
         div.menu div.list-case{
             width: 100%;
@@ -46,40 +46,52 @@
             height: 30px;
         }
         div.menu div.list-case h3{
-            color:  #f06822;
+            color: #ffffff;
             display: block;
-            height: 17px;
-            line-height: 17px;
+            height: 30px;
+            line-height: 27px;
             overflow: hidden;
+        }
+        a.atag_index{
+            text-decoration-line: none;
+            color:  white;
         }
         a{
             text-decoration-line: none;
-            color:  #f06822;
+            text-decoration: none;
         }
-        a:hover{
+
+        a.atag_index:hover{
             text-decoration-line: none;
-            color:  #f06822;
+            text-decoration: none;
+            color:  white;
         }
-        div.menu div.list-case>a{
+        div.menu div.list-case>a, div.menu div.volunteer>a:nth-child(2){
             /* border-top: 1px solid #333; */
             font-size: 15px;
-            padding-left: 30px;
+            padding-left: 55px;
             text-decoration-line: none;
-            color:  black;
+            color:  #ffffff;
         }
-        div.menu div.list-case>a:hover{
-            background-color: #FFFFFF;
+        div.menu div.list-case>a:hover,
+        div.menu div.volunteer>a:hover,
+        div.menu div.volunteer>a:nth-child(1)>div:hover
+        {
+            background-color: #f06822;
         }
-        div.menu>div:hover:not(.list-case){
-            background-color: #ffffff;
+        div.menu>div:hover:not(.list-case):not(.volunteer){
+            background-color: #f06822;
         }
+
         div.menu>div{
-            padding-left: 10px;
+
         }
         .container1{
             width: 85%;
             float: right;
         }
         a.ng-binding{
-            color:  #f06822;
+            color:  black;
         }
+
+    .glyphicon-chevron-down:before{content:"\e114"}

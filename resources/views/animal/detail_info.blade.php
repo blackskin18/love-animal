@@ -15,7 +15,7 @@
 	@endforeach
     <div class="content"> 
     	<div>
-    		<h3 class="text-center"> ca {{$animal->id}} </h3>
+    		<h2 class="text-center"> ca {{$animal->id}} </h3>
 			<div class="row">
 		        <div class="col-lg-4">
 		        	<div class="row">
@@ -31,9 +31,15 @@
 					    @endif
 		        		<form action="/animal/add_image" method="post"  enctype="multipart/form-data">
 							{{csrf_field()}}
-						  	<input type="hidden" name="animal_id" value="{{$animal->id}}" readonly>
-						  	<input type="file" name="photos[]" multiple>
-						  	<input type="submit" class="btn btn-primary"value="thêm ảnh">
+							<div>
+						  		<input type="hidden" name="animal_id" value="{{$animal->id}}" readonly style="display: inline-block;">
+							</div>
+							<div class="col-sm-9">
+						  		<input type="file" name="photos[]" class="form-control" multiple style="display: inline-block;">
+							</div>
+							<div>
+						  		<input type="image" src="{{ asset('icon/themAnh_128.png') }}" height="35" class="btn btn-primary" style="display: inline-block;">
+							</div>
 						</form>
 		        	</div>
 		        	<div class="row">
@@ -44,10 +50,10 @@
 									<img src="{{ asset('animal_image/'.$image->animal_id.'/'.$image->file_name) }}" alt="ảnh ca {{$image->animal_id}}" >
 									<div class="delete" id="delete-image-{{$key+1}}">
 										<input type="hidden" value="{{$image->id}}" disabled>
-										Xóa ảnh
+										<img src="{{ asset('icon/xoaAnh_128.png') }}" alt="" height="30" >
 									</div>
 									<div class="update" id="update-image-{{$key+1}}" style="">
-										Thay ảnh
+										<img src="{{ asset('icon/thayAnh_128.png') }}" alt="" height="30" >
 										<input type="hidden" value="{{$image->id}}" disabled>
 										<form action="/ok" enctype="multipart/form-data" class="change-photo" method="POST">
 											<div class="form-group">
@@ -65,8 +71,8 @@
 		        </div>
 		        <div class="col-lg-8" style="">
 		        	<div class="button-box text-center">
-		        		<button class="btn btn-primary" id="btn-show-info">thông tin case</button>
-		        		<button class="btn btn-primary" id="btn-show-history">nhật ký thay đổi</button>
+						<input type="image" src="{{ asset('icon/thongTinCase_128.png') }}" height="35" class="btn btn-primary" style="display: inline-block;" id="btn-show-info">
+						<input type="image" src="{{ asset('icon/lichSu_96.png') }}" height="35" class="btn btn-primary" style="display: inline-block;" id="btn-show-history">
 		        	</div>
 		        	<div class="history-box">
 						<table class="table table-hover">
@@ -148,12 +154,8 @@
 											</div>
 											<div class="col-lg-3 text-right">
 												@if($user_level == 1 || $user_level == 2 || $user_level == 3 )
-													<button class="btn btn-primary " id="btn-edit-create-at">
-														edit
-													</button>
-													<button class="btn btn-primary " id="btn-edit-create-at-cancel" style="display: none">
-														hủy
-													</button>
+													<input type="image" src="{{ asset('icon/Sua.png') }}" class="btn btn-primary " id="btn-edit-create-at" height="35">
+													<input type="image" src="{{ asset('icon/xoa_128.png') }}" class="btn btn-primary " height="35" id="btn-edit-create-at-cancel" style="display: none">
 												@endif
 											</div>
 										</div>
@@ -174,13 +176,10 @@
 											</div>
 											<div class="col-lg-3 text-right">
 												@if($user_level == 1 || $user_level == 2 || $user_level == 3 )
-
-													<button class="btn btn-primary btn-edit" id="btn-edit-status">
-														edit
-													</button>
-													<button class="btn btn-primary " id="btn-edit-status-cancel" style="display: none">
-														hủy
-													</button>
+													<input type="image" src="{{ asset('icon/Sua.png') }}" height="35" class="btn btn-primary " id="btn-edit-status" >
+														
+													</input>
+													<input type="image" src="{{ asset('icon/xoa_128.png') }}" height="35" style="display: none" class="btn btn-primary " id="btn-edit-status-cancel" >
 												@endif
 											</div>
 										</div>
@@ -213,12 +212,8 @@
 											</div>
 											<div class="col-lg-3 text-right">
 												@if($user_level == 1 || $user_level == 2 || $user_level == 3 )
-													<button class="btn btn-primary btn-edit" id="btn-edit-place">
-														edit
-													</button>
-													<button class="btn btn-primary " id="btn-edit-place-cancel" style="display: none">
-														hủy
-													</button>
+													<input type="image" src="{{ asset('icon/Sua.png') }}" height="35" class="btn btn-primary btn-edit" id="btn-edit-place">
+													<input type="image" src="{{ asset('icon/xoa_128.png') }}" height="35" class="btn btn-primary " id="btn-edit-place-cancel" style="display: none">
 												@endif
 											</div>
 										</div>
@@ -235,19 +230,15 @@
 											</div>
 											<div class="col-lg-3 text-right">
 												@if($user_level == 1 || $user_level == 2 || $user_level == 3 )
-													<button class="btn btn-primary btn-edit" id="btn-edit-address">
-														edit
-													</button>
-													<button class="btn btn-primary " id="btn-edit-address-cancel" style="display: none">
-														hủy
-													</button>
+													<input type="image" src="{{ asset('icon/Sua.png') }}" height="35" class="btn btn-primary btn-edit" id="btn-edit-address">
+													<input type="image" src="{{ asset('icon/xoa_128.png') }}" height="35"  class="btn btn-primary " id="btn-edit-address-cancel" style="display: none">
 												@endif
 											</div>
 										</div>
 									</td>
 								</tr>
 								<tr>
-									<td>trường hợp</td>
+									<td>Trường hợp</td>
 									<td>
 										<div class="row">
 											<div class="col-lg-9">
@@ -257,19 +248,15 @@
 											</div>
 											<div class="col-lg-3 text-right">
 												@if($user_level == 1 || $user_level == 2 || $user_level == 3 )
-													<button class="btn btn-primary btn-edit" id="btn-edit-name">
-														edit
-													</button>
-													<button class="btn btn-primary " id="btn-edit-name-cancel" style="display: none">
-														hủy
-													</button>
+													<input type="image" src="{{ asset('icon/Sua.png') }}" height="35" class="btn btn-primary btn-edit" id="btn-edit-name">
+													<input type="image" src="{{ asset('icon/xoa_128.png') }}" height="35" class="btn btn-primary " id="btn-edit-name-cancel" style="display: none">
 												@endif
 											</div>
 										</div>
 									</td>
 								</tr>
 								<tr>
-									<td>tuổi</td>
+									<td>Tuổi</td>
 									<td>
 										<div class="row">
 											<div class="col-lg-9">
@@ -279,12 +266,8 @@
 											</div>
 											<div class="col-lg-3 text-right">
 												@if($user_level == 1 || $user_level == 2 || $user_level == 3 )	
-													<button class="btn btn-primary btn-edit" id="btn-edit-age">
-														edit
-													</button>
-													<button class="btn btn-primary " id="btn-edit-age-cancel" style="display: none">
-														hủy
-													</button>
+													<input type="image" src="{{ asset('icon/Sua.png') }}" height="35" class="btn btn-primary btn-edit" id="btn-edit-age">
+													<input type="image" src="{{ asset('icon/xoa_128.png') }}" height="35" class="btn btn-primary " id="btn-edit-age-cancel" style="display: none">
 												@endif
 											</div>
 										</div>
@@ -301,19 +284,15 @@
 											</div>
 											<div class="col-lg-3 text-right">
 												@if($user_level == 1 || $user_level == 2 || $user_level == 3 )
-													<button class="btn btn-primary btn-edit" id="btn-edit-type">
-														edit
-													</button>
-													<button class="btn btn-primary btn-edit" id="btn-edit-type-cancel" style="display: none">
-														hủy
-													</button>
+													<input type="image" src="{{ asset('icon/Sua.png') }}" height="35" class="btn btn-primary btn-edit" id="btn-edit-type">
+													<input type="image" src="{{ asset('icon/xoa_128.png') }}" height="35" class="btn btn-primary btn-edit" id="btn-edit-type-cancel" style="display: none">
 												@endif
 											</div>
 										</div>
 									</td>
 								</tr>
 								<tr>
-									<td>mô tả</td>
+									<td>Mô tả</td>
 									<td>
 										<div class="row">
 											<div class="col-lg-9">
@@ -322,12 +301,8 @@
 												</p>
 											</div>
 											<div class="col-lg-3 text-right">
-												<button class="btn btn-primary btn-edit" id="btn-edit-description">
-													edit
-												</button>
-												<button class="btn btn-primary " id="btn-edit-description-cancel" style="display: none">
-													hủy
-												</button>
+												<input type="image" src="{{ asset('icon/Sua.png') }}" height="35" class="btn btn-primary btn-edit" id="btn-edit-description">
+												<input type="image" src="{{ asset('icon/xoa_128.png') }}" height="35" class="btn btn-primary " id="btn-edit-description-cancel" style="display: none">
 											</div>
 										</div>
 									</td>
@@ -342,12 +317,8 @@
 												</p>
 											</div>
 											<div class="col-lg-3 text-right">
-												<button class="btn btn-primary btn-edit" id="btn-edit-note">
-													edit
-												</button>
-												<button class="btn btn-primary " id="btn-edit-note-cancel" style="display: none">
-													hủy
-												</button>
+												<input type="image" src="{{ asset('icon/Sua.png') }}" height="35" class="btn btn-primary btn-edit" id="btn-edit-note">
+												<input type="image" src="{{ asset('icon/xoa_128.png') }}" height="35" class="btn btn-primary " id="btn-edit-note-cancel" style="display: none">
 											</div>
 										</div>
 									</td>

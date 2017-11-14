@@ -14,7 +14,7 @@
         @else
             <img src="{{ asset('avatar/default_avatar/default_avatar.png') }}" alt="avatar">
         @endif
-        @if($user->id == Auth::user()->id)
+        @if($user->id == Auth::user()->id OR $level <= 3)
             <div class="button-edit-avatar">
                 <b> Đổi ảnh </b>
                 <form action="/volunteer/change-avatar/{{$user->id}}" enctype="multipart/form-data" id="change-avatar-form" method="POST">
@@ -30,7 +30,7 @@
         <button id="button-show-log" class="btn btn-primary">
             nhật ký
         </button> <br>
-        @if($user->id == Auth::user()->id)
+        @if($user->id == Auth::user()->id OR $level <= 3)
             <button id="button-show-edit" class="btn btn-primary">
                 sửa thông tin cá nhân
             </button>
@@ -68,11 +68,20 @@
             <tr>
                 <td>ghi chú</td>
                 <td id="note-value">{{$user->note}}</td>
+            </tr> 
+            <tr>
+                <td>Quyền</td>
+                <td id="note-value">
+                    @foreach($user_roles as $user_role)
+                        {{$user_role->role->role_description}} <br>
+                    @endforeach
+
+                </td>
             </tr>
         </table>
     </div>
    
-    @if($user->id == Auth::user()->id)
+    @if($user->id == Auth::user()->id OR $level <= 3)
         <div class="edit-info-box">
             <div class="content">
                 <span>thông tin cơ bản</span>
@@ -107,6 +116,23 @@
                         <td>ghi chú</td>
                         <td><input type="text" class="form-edit" id="input-note"></td>
                     </tr>
+        @endif
+        @if($level<=3)
+                    <tr>
+                        <td>Sửa Quyền</td>
+                        <td>
+                            <div class="col-sm-8" style="padding: 0">
+                                <select name="level[]" multiple id="user_roles" class="form-control">
+                                    <option value="">-------chọn kiểu người dùng-----</option>
+                                    @foreach($role_infos as $role_info)
+                                        <option value="{{$role_info->id}}">{{$role_info->role_description}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+        @endif
+        @if($user->id == Auth::user()->id OR $level <= 3)
                 </table>
                 <div class="row">
                     <div class="col-md-2 col-md-offset-5">
