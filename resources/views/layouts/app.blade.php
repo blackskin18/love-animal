@@ -12,7 +12,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" media="screen"
+     href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
 
     <link href="{{ asset('css/layouts/app.css') }}" rel="stylesheet">
@@ -49,7 +53,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}" style="padding: 0;">
-                        <img src="{{ asset('logo/logo_page.jpg') }}" height="50px"  style="" alt="">
+                        <img src="{{ asset('logo/logo_page.jpg') }}" height="50px" width="75" style="" alt="">
                         <!-- {{ config('app  .name', 'Love-pet') }} -->
                     </a>
                 </div>
@@ -60,8 +64,15 @@
                         <div style="display: inline-block; height: 100%;" >
                             <!-- <button class="btn btn-info"><span class="glyphicon glyphicon-envelope"></span></button> -->
                             <button id="btn-show-today-history"><img src="{{ asset('logo/Notify2.jpg') }}" style="background-size: cover;" width="35px" height="35px" alt=""></button>
-                            <input type="text" class="search" ng-model="search" placeholder="Search">
+                            <input type="text" class="search" id="search" ng-model="search" placeholder="Search">
                         </div>
+                        <div id="datetimepicker" class="input-append datetime" style="display: inline-block;" >
+                            <input type="text" class="searh" id="datetime-input" style="width: 0px">
+                            <span class="add-on">
+                                <i data-time-icon="icon-time" class="glyphicon glyphicon-time" data-date-icon="icon-calendar"> </i>
+                            </span>
+                        </div>
+
                         <!-- <div style="display: inline-block;">
                             <input type="text">
                         </div> -->
@@ -114,6 +125,30 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"> </script>
+    <script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js"> </script>
+    <script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js"></script>
+    <script type="text/javascript">
+        $(function(){
+
+                $('#datetimepicker').datetimepicker({
+                    format: 'yyyy-MM-dd',
+                    language: 'pt-BR'
+                });
+                $('body > div.bootstrap-datetimepicker-widget.dropdown-menu > ul > li.collapse.in > div > div.datepicker-days > table > tbody td').click(function(){
+                    $('input#datetime-input').focus();
+                });
+                $('input#datetime-input').keydown(function(){
+                    let dateValue = $('input#datetime-input').val();
+                    $('input#search').val(dateValue);
+                    $('body > div.bootstrap-datetimepicker-widget.dropdown-menu > ul > li.collapse.in > div > div.datepicker-days > table > tbody td').click(function(){
+                        $('input#datetime-input').focus();
+                    });
+                    $('input#search').focus();
+                })
+
+        });
+    </script>
     @yield('script')
 </body>
 </html>

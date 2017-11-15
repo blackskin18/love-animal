@@ -31,7 +31,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr dir-paginate="(key, animal) in animals|orderBy:sortKey:reverse|filter:search|itemsPerPage:15"  ng-click="showDetailAnimal(animal)" >
+                <tr class="goto-detail" dir-paginate="(key, animal) in animals|orderBy:sortKey:reverse|filter:search|itemsPerPage:15"  ng-click="showDetailAnimal(animal)" >
                     <td ng-if="animal.file_name">
                         <div style="height:100%;width:100%">
                             <img src="{{ asset('animal_image/<% animal.id %>/<% animal.file_name %>') }}" alt="<% animal.description %>" width="75" height="50">
@@ -76,7 +76,7 @@
             $interpolateProvider.endSymbol('%>');
         });
         $(document).ready(function(){
-            $('table tbody tr').click(function(){
+            $('table tbody tr.goto-detail').click(function(){
                 window.location = $(this).attr('href');
                 return false;
             });

@@ -29,18 +29,22 @@
 						        </ul>
 						    </div>
 					    @endif
-		        		<form action="/animal/add_image" method="post"  enctype="multipart/form-data">
-							{{csrf_field()}}
-							<div>
-						  		<input type="hidden" name="animal_id" value="{{$animal->id}}" readonly style="display: inline-block;">
+
+						<div class="text-center">
+							<div width="50" height="50">
+							  		<img src="{{ asset('icon/themAnh_128.png') }}" alt="" height="40" class="btn btn-primary" >
+									<form action="/animal/add_image" enctype="multipart/form-data" id="form-add-image" method="POST">
+										{{csrf_field()}}
+										<div>
+									  		<input type="hidden" name="animal_id" value="{{$animal->id}}" readonly style="display: inline-block;">
+										</div>
+										<div class="form-group">
+											<input type="file" name="photos[]" multiple="" class="change-photo" title="Thêm ảnh" style="position: absolute; top:0; left:0; margin: 0px; padding: 0px; cursor: pointer; opacity: 0; height: 100%; width: 100%" onchange="document.getElementById('form-add-image').submit()">
+										</div>	
+								  	</form>
 							</div>
-							<div class="col-sm-9">
-						  		<input type="file" name="photos[]" class="form-control" multiple style="display: inline-block;">
-							</div>
-							<div>
-						  		<input type="image" src="{{ asset('icon/themAnh_128.png') }}" height="35" class="btn btn-primary" style="display: inline-block;">
-							</div>
-						</form>
+							
+						</div>
 		        	</div>
 		        	<div class="row">
 		        		<div class="col-lg-12" style="padding: 0" id="list-image">
@@ -58,7 +62,6 @@
 										<form action="/ok" enctype="multipart/form-data" class="change-photo" method="POST">
 											<div class="form-group">
 												<input type="file" class="change-photo" name="photo" title="thay ảnh" style="position: absolute; top:0; left:0; margin: 0px; padding: 0px; cursor: pointer; opacity: 0; height: 100%; width: 100%">
-
 											</div>	
 									  	</form>
 									</div>
