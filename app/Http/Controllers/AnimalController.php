@@ -125,6 +125,18 @@ class AnimalController extends Controller
         return $animal->name;
     }
 
+    public function editNote(Request $request, $animalId)
+    {
+        $animal = Animal::find($animalId);
+
+        $history = new HistoryController;
+        $history->saveLog(Auth::User()->id, $animalId, 'note', $animal->note, $request->data, 'Sửa Ghi Chú');
+
+        $animal->note = $request->data;
+        $animal->save();
+        return $animal->note;
+    }
+
 
     public function editType(Request $request, $animalId)
     {
@@ -173,6 +185,18 @@ class AnimalController extends Controller
         $animal->description = $request->data;
         $animal->save();
         return $animal->description;
+    }
+
+    public function editAge(Request $request, $animalId)
+    {
+        $animal = Animal::find($animalId);
+
+        $history = new HistoryController;
+        $history->saveLog(Auth::User()->id, $animalId, 'age', $animal->age, $request->data, 'Sửa tuổi');
+
+        $animal->age = $request->data;
+        $animal->save();
+        return $animal->age;
     }
 
 

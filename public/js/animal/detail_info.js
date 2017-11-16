@@ -116,9 +116,7 @@ function createButtonEdit(buttonId, oldValue){
                     for(let i =0; i<data.length; i++){
                         optionTag +=  '<option value="'+data[i].id+'">'+data[i].name+'</option>'   
                     }
-                    $('input#'+buttonId).before(` <button class="btn btn-primary" id="${buttonId+'-submit'}">
-                                            gửi
-                                        </button>`);
+                    $('input#'+buttonId).before(` <input type="image" src="${location.origin + '/icon/Gui_128.png' }" height="35" class="btn btn-primary" id="${buttonId+'-submit'}">`);
                     $('input#'+this.buttonId).parent().siblings().html(`
                         <select class="form-control" id="sel1">
                             ${optionTag}
@@ -130,9 +128,8 @@ function createButtonEdit(buttonId, oldValue){
                 }
             });
         } else if(buttonId == 'btn-edit-place') {
-            $('input#'+buttonId).before(` <button class="btn btn-primary" id="${buttonId+'-submit'}">
-                    gửi
-                </button>`);
+            $('input#'+buttonId).before(` <input type="image" src="${location.origin + '/icon/Gui_128.png' }" height="35" class="btn btn-primary" id="${buttonId+'-submit'}">`);
+        
              $('input#'+buttonId).parent().siblings().html(`
                 <select class="form-control" id="select-place">
                     <option value=""> ---- Chọn Một ---- </option>
@@ -158,9 +155,11 @@ function createButtonEdit(buttonId, oldValue){
                         datatType: "json",
                         async: false,
                         buttonId: buttonId,
-                        success: function(data){
-                            console.log($('input#'+this.buttonId).parent().siblings().children('select'));
+                        success: function(result){
                             var optionTag = "";
+                            console.log(result);
+                            data = result.volunteers;
+                           
                             for(let i =0; i<data.length; i++){
                                 optionTag +=  '<option value="'+data[i].id+'">'+data[i].name+'</option>'   
                             }
@@ -190,8 +189,10 @@ function createButtonEdit(buttonId, oldValue){
                         datatType: "json",
                         async: false,
                         buttonId: buttonId,
-                        success: function(data){
+                        success: function(result){
                             console.log($('input#'+this.buttonId).parent().siblings().children('select'));
+                            console.log(result.hospitals);
+                            var data = result.hospitals;
                             var optionTag = "";
                             for(let i =0; i<data.length; i++){
                                 optionTag +=  '<option value="'+data[i].id+'">'+data[i].name+'</option>'   
@@ -216,9 +217,8 @@ function createButtonEdit(buttonId, oldValue){
                 }
             });
         } else if(buttonId == 'btn-edit-type'){
-            $('input#'+buttonId).before(` <button class="btn btn-primary" id="${buttonId+'-submit'}">
-                    gửi
-                </button>`);
+            $('input#'+buttonId).before(` <input type="image" src="${location.origin + '/icon/Gui_128.png' }" height="35" class="btn btn-primary" id="${buttonId+'-submit'}">`);
+           
             $('input#'+buttonId).parent().siblings().html(`
                 <select class="form-control" id="select-place">
                     <option value=""> ---- Chọn Một ---- </option>
@@ -229,9 +229,8 @@ function createButtonEdit(buttonId, oldValue){
         } 
 
         else {
-            $('input#'+buttonId).before(` <button class="btn btn-primary" id="${buttonId+'-submit'}">
-                    gửi
-                </button>`);
+            $('input#'+buttonId).before(` <input type="image" src="${location.origin + '/icon/Gui_128.png' }" height="35" class="btn btn-primary" id="${buttonId+'-submit'}">`);
+            
             $('input#'+buttonId).parent().siblings().html(`
                 <textarea class="form-control" name="" id="" cols=60" rows="3">`+oldValue.trim()+`</textarea>
             `);
@@ -242,9 +241,11 @@ function createButtonEdit(buttonId, oldValue){
         $('input#'+buttonId+'-cancel').css({display: 'block', float: 'right'});
 
         $('input#'+buttonId+'-submit').click(function(){
-            var data = $('input#'+buttonId+'-submit').siblings().val();
-            var obj  = $('input#'+buttonId+'-submit').siblings('select#obj').val();
-            var note = $('input#'+buttonId+'-submit').siblings('textarea').val();
+            var data = $('input#'+buttonId+'-submit').parent().siblings().children().val();
+            var obj  = $('input#'+buttonId+'-submit').parent().siblings().children('select#obj').val();
+            var note = $('input#'+buttonId+'-submit').parent().siblings().children('textarea').val();
+            $('input#'+buttonId+'-submit').remove();
+            console.log(data);
 
             var nameUrl = buttonId.split("-");
                 nameUrl.splice(0,1);
@@ -319,7 +320,7 @@ function createButtonCancelEdit(buttonId, oldValue){
                     ${oldValue}
                 </p>
             `);
-        $('button#'+buttonId+'-submit').remove();
+        $('input#'+buttonId+'-submit').remove();
         $('input#'+buttonId).css({display: 'block', float: 'right'});
         $('input#'+buttonId+'-cancel').css({display: 'none',float: 'right'});
     });
