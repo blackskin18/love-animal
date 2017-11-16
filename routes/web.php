@@ -60,6 +60,8 @@ route::post('/animal/edit/edit-name/{animal_id}', 'AnimalController@editName')->
 route::post('/animal/edit/edit-type/{animal_id}', 'AnimalController@editType')->middleware('system_admin');
 route::post('/animal/edit/edit-status/{animal_id}', 'AnimalController@editStatus')->middleware('system_admin');
 route::post('/animal/edit/edit-place/{animal_id}', 'AnimalController@editPlace')->middleware('system_admin');
+route::post('/animal/edit/edit-age/{animal_id}', 'AnimalController@editAge')->middleware('system_admin');
+route::post('/animal/edit/edit-note/{animal_id}', 'AnimalController@editNote')->middleware('system_admin');
 
 
 

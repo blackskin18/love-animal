@@ -158,7 +158,7 @@
 											<div class="col-lg-3 text-right">
 												@if($user_level == 1 || $user_level == 2 || $user_level == 3 )
 													<input type="image" src="{{ asset('icon/Sua.png') }}" class="btn btn-primary " id="btn-edit-create-at" height="35">
-													<input type="image" src="{{ asset('icon/xoa_128.png') }}" class="btn btn-primary " height="35" id="btn-edit-create-at-cancel" style="display: none">
+													<input type="image" src="{{ asset('icon/Huy_128.png') }}" class="btn btn-primary " height="35" id="btn-edit-create-at-cancel" style="display: none">
 												@endif
 											</div>
 										</div>
@@ -182,7 +182,7 @@
 													<input type="image" src="{{ asset('icon/Sua.png') }}" height="35" class="btn btn-primary " id="btn-edit-status" >
 														
 													</input>
-													<input type="image" src="{{ asset('icon/xoa_128.png') }}" height="35" style="display: none" class="btn btn-primary " id="btn-edit-status-cancel" >
+													<input type="image" src="{{ asset('icon/Huy_128.png') }}" height="35" style="display: none" class="btn btn-primary " id="btn-edit-status-cancel" >
 												@endif
 											</div>
 										</div>
@@ -216,7 +216,7 @@
 											<div class="col-lg-3 text-right">
 												@if($user_level == 1 || $user_level == 2 || $user_level == 3 )
 													<input type="image" src="{{ asset('icon/Sua.png') }}" height="35" class="btn btn-primary btn-edit" id="btn-edit-place">
-													<input type="image" src="{{ asset('icon/xoa_128.png') }}" height="35" class="btn btn-primary " id="btn-edit-place-cancel" style="display: none">
+													<input type="image" src="{{ asset('icon/Huy_128.png') }}" height="35" class="btn btn-primary " id="btn-edit-place-cancel" style="display: none">
 												@endif
 											</div>
 										</div>
@@ -234,7 +234,7 @@
 											<div class="col-lg-3 text-right">
 												@if($user_level == 1 || $user_level == 2 || $user_level == 3 )
 													<input type="image" src="{{ asset('icon/Sua.png') }}" height="35" class="btn btn-primary btn-edit" id="btn-edit-address">
-													<input type="image" src="{{ asset('icon/xoa_128.png') }}" height="35"  class="btn btn-primary " id="btn-edit-address-cancel" style="display: none">
+													<input type="image" src="{{ asset('icon/Huy_128.png') }}" height="35"  class="btn btn-primary " id="btn-edit-address-cancel" style="display: none">
 												@endif
 											</div>
 										</div>
@@ -252,7 +252,7 @@
 											<div class="col-lg-3 text-right">
 												@if($user_level == 1 || $user_level == 2 || $user_level == 3 )
 													<input type="image" src="{{ asset('icon/Sua.png') }}" height="35" class="btn btn-primary btn-edit" id="btn-edit-name">
-													<input type="image" src="{{ asset('icon/xoa_128.png') }}" height="35" class="btn btn-primary " id="btn-edit-name-cancel" style="display: none">
+													<input type="image" src="{{ asset('icon/Huy_128.png') }}" height="35" class="btn btn-primary " id="btn-edit-name-cancel" style="display: none">
 												@endif
 											</div>
 										</div>
@@ -270,7 +270,7 @@
 											<div class="col-lg-3 text-right">
 												@if($user_level == 1 || $user_level == 2 || $user_level == 3 )	
 													<input type="image" src="{{ asset('icon/Sua.png') }}" height="35" class="btn btn-primary btn-edit" id="btn-edit-age">
-													<input type="image" src="{{ asset('icon/xoa_128.png') }}" height="35" class="btn btn-primary " id="btn-edit-age-cancel" style="display: none">
+													<input type="image" src="{{ asset('icon/Huy_128.png') }}" height="35" class="btn btn-primary " id="btn-edit-age-cancel" style="display: none">
 												@endif
 											</div>
 										</div>
@@ -288,7 +288,7 @@
 											<div class="col-lg-3 text-right">
 												@if($user_level == 1 || $user_level == 2 || $user_level == 3 )
 													<input type="image" src="{{ asset('icon/Sua.png') }}" height="35" class="btn btn-primary btn-edit" id="btn-edit-type">
-													<input type="image" src="{{ asset('icon/xoa_128.png') }}" height="35" class="btn btn-primary btn-edit" id="btn-edit-type-cancel" style="display: none">
+													<input type="image" src="{{ asset('icon/Huy_128.png') }}" height="35" class="btn btn-primary btn-edit" id="btn-edit-type-cancel" style="display: none">
 												@endif
 											</div>
 										</div>
@@ -305,7 +305,7 @@
 											</div>
 											<div class="col-lg-3 text-right">
 												<input type="image" src="{{ asset('icon/Sua.png') }}" height="35" class="btn btn-primary btn-edit" id="btn-edit-description">
-												<input type="image" src="{{ asset('icon/xoa_128.png') }}" height="35" class="btn btn-primary " id="btn-edit-description-cancel" style="display: none">
+												<input type="image" src="{{ asset('icon/Huy_128.png') }}" height="35" class="btn btn-primary " id="btn-edit-description-cancel" style="display: none">
 											</div>
 										</div>
 									</td>
@@ -321,7 +321,7 @@
 											</div>
 											<div class="col-lg-3 text-right">
 												<input type="image" src="{{ asset('icon/Sua.png') }}" height="35" class="btn btn-primary btn-edit" id="btn-edit-note">
-												<input type="image" src="{{ asset('icon/xoa_128.png') }}" height="35" class="btn btn-primary " id="btn-edit-note-cancel" style="display: none">
+												<input type="image" src="{{ asset('icon/Huy_128.png') }}" height="35" class="btn btn-primary " id="btn-edit-note-cancel" style="display: none">
 											</div>
 										</div>
 									</td>

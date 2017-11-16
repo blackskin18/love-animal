@@ -30,6 +30,15 @@ class HomeController extends Controller
                     ->get();
 
         foreach ($animals as $key => $animal) {
+            $createAt = $animals[$key]->created_at;
+            $createAtInt = strtotime( $createAt );
+            $animals[$key]->created_at = date( 'Y-m-d H:i A', $createAtInt );
+
+            if($animals[$key]->updated_at){
+                $updateAt = $animals[$key]->updated_at;
+                $updateAtInt = strtotime( $updateAt );
+                $animals[$key]->updated_at = date( 'Y-m-d H:i A', $updateAtInt );
+            }
             if($key != 0 && $animals[$key-1]->id == $animals[$key]->id ){
                 $a[] = $key;
             }
@@ -63,6 +72,16 @@ class HomeController extends Controller
                     ->get();
 
         foreach ($animals as $key => $animal) {
+            $createAt = $animals[$key]->created_at;
+            $createAtInt = strtotime( $createAt );
+            $animals[$key]->created_at = date( 'Y-m-d H:i A', $createAtInt );
+
+            if($animals[$key]->updated_at){
+                $updateAt = $animals[$key]->updated_at;
+                $updateAtInt = strtotime( $updateAt );
+                $animals[$key]->updated_at = date( 'Y-m-d H:i A', $updateAtInt );
+            }
+
             if($key != 0 && $animals[$key-1]->id == $animals[$key]->id ){
                 $a[] = $key;
             }
