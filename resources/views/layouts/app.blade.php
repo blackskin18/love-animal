@@ -19,7 +19,7 @@
      href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('css/layouts/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/layouts/app_no_search.css') }}" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="{{ asset('css/popModal.css') }}">
     
 

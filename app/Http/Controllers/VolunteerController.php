@@ -7,6 +7,9 @@ use App\User;
 use App\UserRole;
 use App\RoleInfo;
 use App\AnimalFoster;
+use App\history;
+use App\AnimalHospital;
+use App\Hospital;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ChangePhotoRequest;
 use Redirect;
@@ -67,13 +70,49 @@ class VolunteerController extends Controller
                 break;
             }
         }
+        if(!isset($roleInfos));{
+            $roleInfos = '';
+        }
+
 
         $roleOfUsers = UserRole::where('user_id', $user_id)->get();
         foreach ($roleOfUsers as $key => $userRole) {
             $userRole->role;
         }
 
-        return view('volunteer/detail_info')->with('user',$user)->with('level', $level)->with('role_infos', $roleInfos)->with('user_roles', $roleOfUsers);
+        $histories = History::where('user_id', $user_id)->orderBy('created_at','desc')->get();
+        
+        foreach ($histories as $key => $value) {
+            $histories[$key]->user;
+            if($histories[$key]->attribute == 'place'){
+                if($histories[$key]->old_value && $histories[$key]->old_value == 'hospital'){
+                    $place = AnimalHospital::where('animal_id', $histories[$key]->animal_id)->orderBy('created_at', 'desc')->take(1)->get();
+                    $place[0]->hospital;
+                    $histories[$key]['old_value_place'] =  $place[0];
+                } elseif($histories[$key]->old_value == 'volunteer'){
+                    $place = AnimalFoster::where('animal_id', $histories[$key]->animal_id)->orderBy('created_at', 'desc')->take(1)->get();
+                    $place[0]->foster;
+                    $histories[$key]['old_value_place'] =  $place[0];
+                }
+
+                if($histories[$key]->new_value && $histories[$key]->new_value == 'hospital'){
+                    $place = AnimalHospital::where('animal_id', $histories[$key]->animal_id)->orderBy('created_at', 'desc')->take(1)->get();
+                    $place[0]->hospital;
+                    $histories[$key]['new_value_place'] =  $place[0];
+                } elseif($histories[$key]->new_value == 'volunteer'){
+                    $place = AnimalFoster::where('animal_id', $histories[$key]->animal_id)->orderBy('created_at', 'desc')->take(1)->get();
+                    $place[0]->foster;
+                    $histories[$key]['new_value_place'] =  $place[0];
+                }
+            }
+        }
+
+
+        return view('volunteer/detail_info')->with('user',$user)
+                                            ->with('level', $level)
+                                            ->with('role_infos', $roleInfos)
+                                            ->with('user_roles', $roleOfUsers)
+                                            ->with('histories', $histories);
     }
 
     public function editInfo(Request $request, $userId)

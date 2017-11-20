@@ -72,9 +72,9 @@ div.avatar-box{
     }
     div.log-box>div.log-content{
         width: 100%;
-        height: 500px;
-        border: 1px solid red;
         display: none;
+        height: 600px;
+        overflow: scroll;
     }
 
     div.button-show-log{

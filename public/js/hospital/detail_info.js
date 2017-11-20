@@ -144,9 +144,6 @@ $(function(){
                     <td>${animal.name}</td>
                 </tr>
             </table>
-            <a href="${window.location.origin + "/animal/detail_info/" + animal.id}">
-                <button class="btn btn-primary"> chi tiết</button>
-            </a>
         </div>`
         return htmlAppend;
     }

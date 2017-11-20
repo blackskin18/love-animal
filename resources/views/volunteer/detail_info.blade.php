@@ -146,6 +146,70 @@
     @endif
     <div class="log-box">
         <div class="log-content">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Ngày thay đổi</th>
+                        <th>Người Dùng</th>
+                        <th>Ghi Chú</th>
+                        <th>Trước khi thay Đổi</th>
+                        <th>Sau khi thay đổi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($histories as $key => $history)
+                    <tr>
+                        <td>{{$history->created_at}}</td>
+                        <td>
+                            <a href="{{ '/volunteer/info/'.$history->user_id }}">
+                                {{$history->user->name}}
+                            </a>
+                        </td>
+                        <td>{{$history->note}}</td>
+                        <td>
+                            @if ($history->attribute == 'image')
+                            <img src="{{ asset('animal_image/'.$history->animal_id.'/'.$history->old_value) }}" width="75" height="50" alt="">
+                            @elseif ($history->attribute == 'place' and $history->old_value == 'volunteer')
+                                <a href="/volunteer/info/{{ $history->old_value_place->foster->id }}">
+                                    {{ $history->old_value_place->foster->name }}
+                                </a> 
+                                <br>
+                                {{ $history->old_value_place->note  }}
+                            @elseif ($history->attribute == 'place' and $history->old_value == 'hospital')
+                                <a href="/hospital/detail_info/{{ $history->old_value_place->hospital->id }}">
+                                    {{ $history->old_value_place->hospital->name }}
+                                </a> <br>
+                                {{ $history->old_value_place->note }}
+                            @elseif ($history->attribute == 'place' and $history->old_value == 'commonHome')
+                                    Nhà Chung
+                            @else
+                                {{$history->old_value}}
+                            @endif
+                        </td>
+                        <td>
+                            @if ($history->attribute == 'image')
+                            <img src="{{ asset('animal_image/'.$history->animal_id.'/'.$history->new_value) }}" width="75" height="50" alt="">
+                            @elseif ($history->attribute == 'place' and $history->new_value == 'volunteer')
+                                <a href="/volunteer/info/{{ $history->new_value_place->foster->id }}">
+                                    {{ $history->new_value_place->foster->name }}
+                                </a> 
+                                <br>
+                                {{ $history->new_value_place->note  }}
+                            @elseif ($history->attribute == 'place' and $history->new_value == 'hospital')
+                                <a href="/hospital/detail_info/{{ $history->new_value_place->hospital->id }}">
+                                    {{ $history->new_value_place->hospital->name }}
+                                </a> <br>   
+                                {{ $history->new_value_place->note }}
+                            @elseif ($history->attribute == 'place' and $history->new_value == 'commonHome')
+                                    Nhà Chung
+                            @else
+                                {{$history->new_value}}
+                            @endif
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

@@ -14,7 +14,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
     
-    <link href="{{ asset('css/layouts/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/layouts/app_no_search.css') }}" rel="stylesheet">
 
     <script src="{{ asset('js/jquery-3.2.1.js') }}"></script>
     <script src="{{ asset('js/popModal.js') }}"></script>

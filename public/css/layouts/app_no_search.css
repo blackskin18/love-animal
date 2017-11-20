@@ -3,10 +3,14 @@
         margin: 0;
         border: 0;
     }
-    input#search-box {
+    body{
+        font-family: verdana, sans-serif;
+    }
+
+    input[type=text].search {
         width: 250px;
         box-sizing: border-box;
-        border: 2px solid #ccc;
+        border: 2px solid rgba(240, 104, 34, 0.6);
         border-radius: 4px;
         font-size: 16px;
         background-color: white;
@@ -20,54 +24,68 @@
         padding: 5px;
     }
 
-    input#search-box:focus {
-        width: 400px;
+    input[type=text].search:focus {
     }
     .navbar{
         margin: 0;
     }
     div.menu{
-            background-color: #E9EBEE;
-            height: 600px;
-            width: 15%;
-            float: left;
-        }
-        div.menu div.list-case{
-            width: 100%;
-            margin-top: 20px;
-            text-align: left ;
-        }
-        div.menu div.list-case>span{
-            height: 30px;
-        }
-        div.menu div.list-case h3{
-            color: #90949c;
-            display: block;
-            height: 17px;
-            line-height: 17px;
-            overflow: hidden;
-        }
-        div.menu div.list-case>a{
-            /* border-top: 1px solid #333; */
-            font-size: 15px;
-            padding-left: 30px;
-            text-decoration-line: none;
-            color:  black;
-        }
-        div.menu div.list-case>a:hover{
-            background-color: #FFFFFF;
-        }
-        div.menu>div:hover:not(.list-case){
-            background-color: #ffffff;
-        }
-        div.menu>div{
-            padding-left: 10px;
-        }
-        /* .container1{
-            width: 85%;
-            float: right;
-        } */
-        .col-centered{
-            float: none;
-            margin: 0 auto;
-        }
+        background-color: #1A4D9A;
+        width: 200px;
+        height: 700px;
+        float: left;
+        color:  #ffffff;
+    }
+
+    .container1{
+        width: 85%;
+        float: right;
+    }
+    
+    div.menu>nav>ul{
+        border-top: 5px
+    }
+
+    div.menu>nav>ul>li{
+        background-color: black;
+        border-bottom: 1px solid white;
+        /* padding: 5px 0 5px 0; */
+        background-color: #1A4D9A;
+    }
+
+    div.menu>nav>ul>li a{
+        color: white;    
+    }
+
+    div.menu>nav>ul>li:hover{
+        background-color: #f06822;
+    }
+
+    div.menu>nav>ul>li>ul>li:hover{
+        background-color: rgba(240, 104, 34, 0.8);
+    }
+    
+
+    div.menu>nav>ul>li:hover>ul{
+        background-color: #174282;
+    }
+
+    a:hover{
+        text-decoration: none;
+    }
+
+    div.menu>nav>ul>li:hover>ul{
+        display: block;
+    }
+
+
+    div.menu>nav>ul>li>ul{
+        display: none;
+    }
+    
+    div.menu>nav>ul>li>ul>li{
+        padding-left: 40px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-top: 1px solid #8de2ef;
+    }
