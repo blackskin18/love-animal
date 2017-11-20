@@ -26,11 +26,10 @@ class AnimalController extends Controller
      * Create a new controller instance.
      *
      * @return void
-     */    
+     */
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('system_admin');
     }
 
     public function getAnimalInfo($animalId) 
