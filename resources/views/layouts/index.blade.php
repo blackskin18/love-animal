@@ -17,7 +17,7 @@
             <ul>
                 <li>
                     <a href="#">
-                         <img src="{{ asset('icon/danhSach_64.png') }}" width="35" height="35"> Danh Sách Case
+                         <img src="{{ asset('icon/danhSach_64.png') }}" width="25" height="25"> Danh Sách Case
                     </a>
                     <ul class="drop-mneu">
                         <li><a href="/home" title="">Tất Cả</a></li>
@@ -29,7 +29,7 @@
                 </li>
                 <li>
                     <a href="/hospital/list"> 
-                    <img  src="{{ asset('icon/phongKham_64.png') }}" width="35" height="35">
+                    <img  src="{{ asset('icon/phongKham_64.png') }}" width="25" height="25">
                         Phòng Khám
                     </a>
                     @if($check_admin == 1)
@@ -41,7 +41,7 @@
                 </li>
                 <li>
                     <a href="/volunteer/list">
-                        <img  src="{{ asset('icon/TNV_64.png') }}" width="35" height="35">
+                        <img  src="{{ asset('icon/TNV_64.png') }}" width="25" height="25">
                         Tình Nguyện Viên
                     </a>
                     
@@ -58,21 +58,21 @@
                 </li>
                 <li>
                     <a href="/animal/list_image/all">
-                        <img  src="{{ asset('icon/albumAnh_96.png') }}"  width="35" height="35">
+                        <img  src="{{ asset('icon/albumAnh_96.png') }}"  width="25" height="25">
                         Ảnh
                     </a>
 
                 </li>
                 <li>
                     <a href="/histories">
-                        <img src="{{ asset('icon/lichSu_96.png') }}" width="35" height="35">
+                        <img src="{{ asset('icon/lichSu_96.png') }}" width="25" height="25">
                         Lịch Sử Hoạt Động
                     </a>
                 </li>
                 @if($check_admin == 1)
                 <li>
                     <a href="/admin/create_case">
-                        <img src="{{ asset('icon/taoCase_64.png') }}"  width="35" height="35">
+                        <img src="{{ asset('icon/taoCase_64.png') }}"  width="25" height="25">
                         Tạo case
                     </a>
                 </li>

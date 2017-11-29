@@ -39,8 +39,8 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}" style="padding: 0;">
-                        <img src="{{ asset('logo/logo_page.jpg') }}" height="50px"  style="" alt="">
+                    <a class="navbar-brand" href="{{ url('/') }}" style="padding: 0; margin-left: 30px">
+                        <img src="{{ asset('logo/logo_page.png') }}" height="50px"  style="" alt="">
                         <!-- {{ config('app  .name', 'Love-pet') }} -->
                     </a>
                 </div>
@@ -48,8 +48,8 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse" style="display: inline-block;">
                     <!-- Left Side Of Navbar -->
                     <div class="navbar-nav" style="width: 70%; height: 50px">
-                        <div style="display: inline-block; height: 100%; margin: auto; margin-left: 115px;" >
-                            <button id="btn-show-today-history"><img src="{{ asset('logo/Notify2.jpg') }}" style="background-size: cover;" width="35px" height="35px" alt=""></button>
+                        <div style="display: inline-block; height: 100%; margin: auto; margin-left: 70px;" >
+                            <button id="btn-show-today-history"><img src="{{ asset('logo/time_128.png') }}" style="background-size: cover;" width="35px" height="35px" alt=""></button>
                             <input type="text" class="search"  id="search-box" placeholder="Search" disabled class="form-control" style="display: inline-block;">
                         </div>
                     </div>

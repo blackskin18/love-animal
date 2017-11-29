@@ -52,18 +52,20 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}" style="padding: 0;">
-                        <img src="{{ asset('logo/logo_page.jpg') }}" height="50px" width="75" style="" alt="">
+                    <a class="navbar-brand" href="{{ url('/') }}" style="padding: 0; margin-left: 30px">
+                        <img src="{{ asset('logo/logo_page.png') }}" height="50px" width="75" style="" alt="">
                         <!-- {{ config('app  .name', 'Love-pet') }} -->
                     </a>
                 </div>
                 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse" style="display: inline-block;">
                     <!-- Left Side Of Navbar -->
-                    <div class="navbar-nav" style="width: 70%; height: 50px; margin-left: 115px">
+                    <div class="navbar-nav" style="width: 70%; height: 50px; margin-left: 70px">
                         <div style="display: inline-block; height: 100%;" >
                             <!-- <button class="btn btn-info"><span class="glyphicon glyphicon-envelope"></span></button> -->
-                            <button id="btn-show-today-history"><img src="{{ asset('logo/Notify2.jpg') }}" style="background-size: cover;" width="35px" height="35px" alt=""></button>
+                            <button id="btn-show-today-history">
+                                <img src="{{ asset('logo/time_128.png') }}"  width="35px" height="35px" alt="">
+                            </button>
                             <input type="text" class="search" id="search" ng-model="search" placeholder="Search">
                         </div>
                         <div id="datetimepicker" class="input-append datetime" style="display: inline-block;" >
@@ -137,6 +139,8 @@
                 });
                 $('body > div.bootstrap-datetimepicker-widget.dropdown-menu > ul > li.collapse.in > div > div.datepicker-days > table > tbody td').click(function(){
                     $('input#datetime-input').focus();
+                    let dateValue = $('input#datetime-input').val();
+                    console.log(dateValue);
                 });
                 $('input#datetime-input').keydown(function(){
                     let dateValue = $('input#datetime-input').val();

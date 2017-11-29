@@ -25,7 +25,7 @@
                         <span class="glyphicon sort-icon" ng-show="sortKey=='name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
                     </th> <th ng-click="sort('created_at')"> Ngày nhận
                         <span class="glyphicon sort-icon" ng-show="sortKey=='created_at'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-                    </th> <th ng-click="sort('updated_at')"> Cập nhập
+                    </th> <th ng-click="sort('updated_at')"> Cập nhật
                         <span class="glyphicon sort-icon" ng-show="sortKey=='updated_at'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
                     </th> 
                 </tr>
