@@ -12,6 +12,19 @@
                 $('input#input-phone').val($('td#phone-value').text());
                 $('input#input-address').val($('td#address-value').text());
                 $('input#input-note').val($('td#note-value').text());
+
+                let oldRoldes = $('.roles');
+                var roles = [];
+               for(var i = 0; i< 8; i++){
+                    let roleValue = $('#roles_'+i).val();
+                    if(typeof roleValue != "undefined"){
+                        roles.push(roleValue);
+                    }
+               }
+
+               console.log(roles)
+                $('select#user_roles').val(roles);
+
                 if( $('select#gender-value').val() == "Nữ" ){
                     $('select#input-gender').val("G");
                 } else {
@@ -53,23 +66,10 @@
                 data,
             },
             success:function(data){
-                $('td#name-value').text(data.name);
-                $('td#email-value').text(data.enail);
-                $('td#phone-value').text(data.phone);
-                $('td#address-value').text(data.address);
-                $('td#note-value').text(data.note);
-                if(data.gender == "M"){
-                    $('td#gender-value').text("Nữ");
-                } else {
-                    $('td#gender-value').text("Nam");
-                }
-                $('div.edit-info-box').slideToggle( "slow", function(){
-                    $('div.detail-info').slideToggle( "slow");
-                    check = true;
-                });
+                location.reload();
             },
             error:function() {
-                alert('abc')
+                location.reload();
             }
         });
 

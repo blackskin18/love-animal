@@ -71,11 +71,11 @@
             </tr> 
             <tr>
                 <td>Quyền</td>
-                <td id="note-value">
-                    @foreach($user_roles as $user_role)
+                <td id="note-roles">
+                    @foreach($user_roles as $key => $user_role)
+                        <input type="hidden" id="roles_{{$key}}" value="{{$user_role->role->id}}">
                         {{$user_role->role->role_description}} <br>
                     @endforeach
-
                 </td>
             </tr>
         </table>
@@ -92,7 +92,7 @@
                     </tr>
                     <tr>
                         <td>email</td>
-                        <td><input type="mail" class="form-edit" id="input-email"> </td>
+                        <td><input type="mail" class="form-edit" id="input-email" disabled=""> </td>
                     </tr>
                     <tr>
                         <td>giới tính</td>

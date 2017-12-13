@@ -36,9 +36,9 @@ return [
     ],
 
     'google' => [
-        'client_id' => '1068180738247-57plrhvlisdffaunjqfhdgpq74o70ppt.apps.googleusercontent.com',
-        'client_secret' => '8fCZ8DZl2ktqet3_UisFpVcu',
+        'client_id' => '1068180738247-qet5279tiff6ksbkfv4g7sqn1du6ldiu.apps.googleusercontent.com',
+        'client_secret' => 'Ue-YvQ-mJrb455gbgfKjPq6f',
         'redirect' => 'http://lovepet.dev/auth/google/callback',
     ],
-
+    
 ];

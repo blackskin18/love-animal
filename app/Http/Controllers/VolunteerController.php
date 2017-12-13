@@ -7,7 +7,7 @@ use App\User;
 use App\UserRole;
 use App\RoleInfo;
 use App\AnimalFoster;
-use App\history;
+use App\History;
 use App\AnimalHospital;
 use App\Hospital;
 use Illuminate\Support\Facades\DB;
@@ -61,17 +61,14 @@ class VolunteerController extends Controller
         }
 
         $userId = Auth::user()->id;
-        $userRoles = UserRole::where('user_id', $userId)->get();
-        foreach ($userRoles as $key => $userRole) {
-            if($userRole->role_id == 3 || $userRole->role_id == 3){
-                $roleInfos = RoleInfo::where('role_id', '>', 3)->get();
-            } elseif($userRole->role_id == 1){
-                $roleInfos = RoleInfo::all();
-                break;
-            }
+        if($level == 3 || $level == 2){
+            $roleInfos = RoleInfo::where('role_id', '>', 3)->get();
+        } elseif($level == 1){
+            $roleInfos = RoleInfo::all();
         }
-        if(!isset($roleInfos));{
-            $roleInfos = '';
+
+        if(!isset($roleInfos)){
+            $roleInfos = [];
         }
 
 
@@ -134,9 +131,6 @@ class VolunteerController extends Controller
             if($userInfo['name'] != null && $user->name !=  $userInfo['name']){
                 $user->name = $userInfo['name'];
             }
-            if($userInfo['email'] != null && $user->email !=  $userInfo['email']){
-                $user->email = $userInfo['email'];
-            }
             if($userInfo['phone'] != null && $user->phone !=  $userInfo['phone']){
                 $user->phone = $userInfo['phone'];
             }
@@ -147,7 +141,7 @@ class VolunteerController extends Controller
                 $user->gender = $userInfo['gender'];
             }
             $user->save();
-
+            $newUserRoles;
             if($userInfo['user_roles'] != null and $level <=3 ){
                 $oldUserRoles = UserRole::where('user_id', $userId)->get();
                 foreach ($oldUserRoles as $key => $value) {
@@ -162,11 +156,10 @@ class VolunteerController extends Controller
                     $userRole->save();
                 }
             }
-            
-            
         }
-        
+
         return $user;
+
     }
 
     public function changeAvatar(ChangePhotoRequest $request, $userId)
